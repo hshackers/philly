@@ -2,15 +2,15 @@ var keystone = require('keystone'),
 	Types = keystone.Field.Types;
 
 /**
- * Organisations Model
+ * Organizations Model
  * ===================
  */
 
-var Organisation = new keystone.List('Organisation', {
+var Organization = new keystone.List('Organization', {
 	autokey: { path: 'key', from: 'name', unique: true }
 });
 
-Organisation.add({
+Organization.add({
 	name: { type: String, index: true },
 	logo: { type: Types.CloudinaryImage },
 	website: Types.Url,
@@ -25,7 +25,7 @@ Organisation.add({
  * =============
  */
 
-Organisation.relationship({ ref: 'User', refPath: 'organisation', path: 'members' });
+Organization.relationship({ ref: 'User', refPath: 'organization', path: 'members' });
 
 
 /**
@@ -33,6 +33,6 @@ Organisation.relationship({ ref: 'User', refPath: 'organisation', path: 'members
  * ============
  */
 
-Organisation.addPattern('standard meta');
-Organisation.defaultColumns = 'name, website, isHiring';
-Organisation.register();
+Organization.addPattern('standard meta');
+Organization.defaultColumns = 'name, website, isHiring';
+Organization.register();
