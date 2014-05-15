@@ -2,7 +2,7 @@ require('./meetups');
 require('./talks');
 require('./rsvps');
 require('./users');
-require('./organisations');
+require('./organizations');
 require('./posts');
 require('./postCategories');
 require('./postComments');

@@ -12,8 +12,8 @@ Meetup.add({
 	name: { type: String, required: true, initial: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	date: { type: Types.Date, required: true, initial: true, index: true },
-	time: { type: String, required: true, initial: true, width: 'short', default: '6pm - 9pm', note: 'e.g. 6pm - 9pm' },
-	place: { type: String, required: true, initial: true, width: 'medium', default: 'Level 6, 341 George St (Atlassian) – Enter via the side door in Wynyard Street', note: 'usually Level 6, 341 George St (Atlassian) – Enter via the side door in Wynyard Street' },
+	time: { type: String, required: true, initial: true, width: 'short', default: '10am - 7pm', note: 'e.g. 10am - 7pm' },
+	place: { type: String, required: true, initial: true, width: 'medium', default: '1101 Arch Street (PA Convention Center) – Enter via the side door on Market Street', note: 'Include at least a building name and an address.' },
 	description: { type: Types.Html, wysiwyg: true },
 	maxRSVPs: { type: Number, default: 100 },
 	totalRSVPs: { type: Number, noedit: true }
