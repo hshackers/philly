@@ -46,7 +46,7 @@ User.add({
 		want: { type: String, label: 'Wants...', dependsOn: deps.mentoring }
 	}
 }, 'Permissions', {
-	isAdmin: { type: Boolean, label: 'Can Admin SydJS' }
+	isAdmin: { type: Boolean, label: 'Can Admin HS Hackers' }
 }, 'Services', {
 	services: {
 		github: {
@@ -117,12 +117,12 @@ User.schema.methods.resetPassword = function(callback) {
 		
 		new keystone.Email('forgotten-password').send({
 			name: user.name.first || user.name.full,
-			link: 'http://www.sydjs.com/reset-password/' + user.resetPasswordKey,
-			subject: 'Reset your SydJS Password'
+			link: 'http://philly.hshackers.org/reset-password/' + user.resetPasswordKey,
+			subject: 'Reset your HS Hackers Password'
 		}, {
 			to: user,
 			from: {
-				name: 'SydJS',
+				name: 'HS Hackers',
 				email: 'contact@sydjs.com'
 			}
 		}, callback);

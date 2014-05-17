@@ -1,13 +1,3 @@
-/**
- * This file contains the common middleware used by your routes.
- * 
- * Extend or replace these functions as your application requires.
- * 
- * This structure is not enforced, and just a starting point. If
- * you have more middleware you may want to group it as separate
- * modules in your project's /lib directory.
- */
-
 var _ = require('underscore'),
 	querystring = require('querystring'),
 	keystone = require('keystone');
@@ -15,10 +5,6 @@ var _ = require('underscore'),
 
 /**
 	Initialises the standard view locals
-	
-	The included layout depends on the navLinks array to generate
-	the navigation in the header, you may wish to change this array
-	or replace it with your own templates / logic.
 */
 
 exports.initLocals = function(req, res, next) {
@@ -26,13 +12,44 @@ exports.initLocals = function(req, res, next) {
 	var locals = res.locals;
 	
 	locals.navLinks = [
-		{ label: 'Home',		key: 'home',		href: '/' },
-		{ label: 'Blog',		key: 'blog',		href: '/blog' },
-		{ label: 'Gallery',		key: 'gallery',		href: '/gallery' },
-		{ label: 'Contact',		key: 'contact',		href: '/contact' }
+		{ label: 'Home',      key: 'home',      href: '/',          layout: 'left' },
+		{ label: 'Meetups',   key: 'meetups',   href: '/meetups',   layout: 'left' },
+		{ label: 'Members',   key: 'members',   href: '/members',   layout: 'left' },
+		{ label: 'Links',     key: 'links',     href: '/links',     layout: 'left' },
+		{ label: 'Blog',      key: 'blog',      href: '/blog',      layout: 'right' },
+		{ label: 'About',     key: 'about',     href: '/about',     layout: 'right' },
+		{ label: 'Mentoring', key: 'mentoring', href: '/mentoring', layout: 'right' }
 	];
 	
 	locals.user = req.user;
+
+	locals.qs_set = qs_set(req, res);
+	
+	next();
+	
+};
+
+
+/**
+	Inits the error handler functions into `req`
+*/
+
+exports.initErrorHandlers = function(req, res, next) {
+	
+	res.err = function(err, title, message) {
+		res.status(500).render('errors/500', {
+			err: err,
+			errorTitle: title,
+			errorMsg: message
+		});
+	}
+	
+	res.notfound = function(title, message) {
+		res.status(404).render('errors/404', {
+			errorTitle: title,
+			errorMsg: message
+		});
+	}
 	
 	next();
 	
@@ -58,7 +75,6 @@ exports.flashMessages = function(req, res, next) {
 	
 };
 
-
 /**
 	Prevents people from accessing protected pages when they're not signed in
  */
@@ -67,9 +83,37 @@ exports.requireUser = function(req, res, next) {
 	
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/keystone/signin');
+		res.redirect('/signin');
 	} else {
 		next();
 	}
 	
+}
+
+
+/**
+	Returns a closure that can be used within views to change a parameter in the query string
+	while preserving the rest.
+*/
+
+var qs_set = exports.qs_set = function(req, res) {
+
+	return function qs_set(obj) {
+
+		var params = _.clone(req.query);
+
+		for (var i in obj) {
+			if (obj[i] === undefined || obj[i] === null) {
+				delete params[i];
+			} else if (obj.hasOwnProperty(i)) {
+				params[i] = obj[i];
+			}
+		}
+
+		var qs = querystring.stringify(params);
+
+		return req.path + (qs ? '?' + qs : '');
+
+	}
+
 }

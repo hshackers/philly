@@ -1,0 +1,8 @@
+mixin organizer(org)
+	.thumbnail.organizer: .caption
+		.organizer__header
+			.img-wrapper
+				img(src=org.image, alt='HS Hackers organizer - ' + org.name)
+			h4.organizer__name=org.name
+			p.organizer__twitter: a(href='https://twitter.com/' + org.twitter, target='_blank') @#{org.twitter}
+		p.mv-0=org.title
