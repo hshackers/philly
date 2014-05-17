@@ -1,9 +1,9 @@
-sydjs.com
+philly.hshackers.org
 =========
 
 ## The HS Hackers Website.
 
-Initially built in two and a half days by the team at [Thinkmill](http://www.thinkmill.com.au) as a demo of what [KeystoneJS](http://keystonejs.com) can do, it's now a showcase for the Sydney Javascript community.
+Initially built in two and a half days by the team at [Thinkmill](http://www.thinkmill.com.au) as a demo of what [KeystoneJS](http://keystonejs.com) can do, it's now a website for a meetup group in America.
 
 ## Get Involved!
 
@@ -60,7 +60,7 @@ If you want to run against a different server or database, add a line to your `.
 
 When it's all up and running, you should see the message `HS Hackers is ready on port 3000` and you'll be able to browse the site on [localhost:3000](http://localhost:3000).
 
-### Here be ~~dragons~~ errors
+### Here be ~~liberty~~ bells
 
 #### or, how you don't have any content yet
 
