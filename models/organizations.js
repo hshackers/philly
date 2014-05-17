@@ -1,5 +1,5 @@
 var keystone = require('keystone'),
-	Types = keystone.Field.Types;
+  Types = keystone.Field.Types;
 
 /**
  * Organizations Model
@@ -7,16 +7,16 @@ var keystone = require('keystone'),
  */
 
 var Organization = new keystone.List('Organization', {
-	autokey: { path: 'key', from: 'name', unique: true }
+  autokey: { path: 'key', from: 'name', unique: true }
 });
 
 Organization.add({
-	name: { type: String, index: true },
-	logo: { type: Types.CloudinaryImage },
-	website: Types.Url,
-	isHiring: Boolean,
-	description: { type: Types.Markdown },
-	location: Types.Location
+  name: { type: String, index: true },
+  logo: { type: Types.CloudinaryImage },
+  website: Types.Url,
+  isHiring: Boolean,
+  description: { type: Types.Markdown },
+  location: Types.Location
 });
 
 
@@ -25,7 +25,7 @@ Organization.add({
  * =============
  */
 
-Organization.relationship({ ref: 'User', refPath: 'organization', path: 'members' });
+Organization.relationship({ ref: 'User', refPath: 'organisation', path: 'members' });
 
 
 /**
