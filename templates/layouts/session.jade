@@ -12,18 +12,24 @@ html
 		
 		title= title || 'HS Hackers'
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
-		link(href="/styles/session.min.css", rel="stylesheet")
-		link(href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel="stylesheet")
+		link(href="/styles/site.min.css", rel="stylesheet")
+		link(href="/icons/styles.css", rel="stylesheet")
+		link(href="https://fonts.googleapis.com/css?family=Exo+2:400,700|Montserrat:400,700|Dosis:300,700", rel="stylesheet")
+
+		style 
 
 		block css
 	body: #session-wrapper
 			
 		
 		//- HEADER
-		header(role='banner').main-header
-			a(href='/', title='Back to Home').navbar-logo
-				img(src='/images/logo.svg', alt='HS Hackers logo', width=130, height=119)
-		
+		nav(role='banner'): .container
+			a.nav-item.logo(href="/")
+				span.inner
+					i.icon-tools
+					| HS Hackers
+					br
+					span.cap Philadelphia
 		
 		//- BODY
 		.main-body
