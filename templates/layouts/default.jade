@@ -14,7 +14,7 @@ html
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 		link(href="/styles/site.min.css", rel="stylesheet")
 		link(href="/icons/styles.css", rel="stylesheet")
-		link(href="https://fonts.googleapis.com/css?family=Exo+2:500,700|Montserrat:400,700|Dosis:300,700", rel="stylesheet")
+		link(href="https://fonts.googleapis.com/css?family=Exo+2:400,700|Montserrat:400,700|Dosis:300,700", rel="stylesheet")
 		//- link(href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel="stylesheet")
 
 		
@@ -23,78 +23,82 @@ html
 		
 		block css
 		block head
-	body: #base-wrapper
-		
-		//- EASTER EGG
-		#easter-egg(style='display: none;')
-			#old-logo
-		
-		//- HEADER
+	body#top
 
-		nav(role='banner'): .container
-			.right
-				if user
-					a.nav-item(href='/me')
-						span.inner
-							i.icon-happy
-							| Profile
-							br
-							span.cap= user.name.first
-					a.nav-item(href='/signout')
-						span.inner
-							i.icon-boom
-							| Sign Out
-							br
-							span.cap Seeya!
-				else
-					a.login-button(href='/signin')
-						| Sign In
-			a.nav-item.logo(href="/")
-				span.inner
-					i.icon-tools
-					| HS Hackers
-					br
-					span.cap Philadelphia
-			a.nav-item(href="/meetups")
-				span.inner
-					i.icon-mappy
-					| Meetups
-					br
-					span.cap 2nd Saturday
-			a.nav-item(href="/members")
-				span.inner
-					i.icon-person
-					| Members
-					br
-					span.cap Connect
-			a.nav-item(href="/links")
-				span.inner
-					i.icon-monocle
-					| Links
-					br
-					span.cap Share
-			//- each link in navLinks
-				if link.layout == 'left'
-					li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
-			//- each link in navLinks
-				if link.layout == 'right'
-					li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
+		#base-wrapper
+			
+			//- EASTER EGG
+			#easter-egg(style='display: none;')
+				#old-logo
+			
+			//- HEADER
 
-		//- BODY
-		#base-body
-			
-			block intro
-			
-			+flash-messages(messages)
-			
-			block content
-		
+			nav(role='banner'): .container
+				.right
+					if user
+						a.nav-item(href='/me')
+							span.inner
+								i.icon-happy
+								| Profile
+								br
+								span.cap= user.name.first
+						a.nav-item(href='/signout')
+							span.inner
+								i.icon-boom
+								| Sign Out
+								br
+								span.cap Seeya!
+					else
+						a.login-button(href='/signin')
+							| Sign In
+						a.login-button(href='/authentication/github')
+							i.icon-github
+				a.nav-item.logo(href="/")
+					span.inner
+						i.icon-tools
+						| HS Hackers
+						br
+						span.cap Philadelphia
+				a.nav-item(href="/meetups")
+					span.inner
+						i.icon-mappy
+						| Meetups
+						br
+						span.cap 2nd Saturday
+				a.nav-item(href="/members")
+					span.inner
+						i.icon-person
+						| Members
+						br
+						span.cap Connect
+				a.nav-item(href="/links")
+					span.inner
+						i.icon-monocle
+						| Links
+						br
+						span.cap Share
+				//- each link in navLinks
+					if link.layout == 'left'
+						li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
+				//- each link in navLinks
+					if link.layout == 'right'
+						li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
+
+			//- BODY
+			#base-body
+				
+				block intro
+				
+				+flash-messages(messages)
+				
+				block content
 		
 		//- FOOTER
 		#base-footer: .container
-			p Copyright &copy; 2013 HS Hackers. Powered by <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a>.
-			p If you run a meetup, please feel free to clone our site and make your own! You can <a href="https://github.com/JedWatson/base-site", target='_blank'>find it on GitHub</a>.
-		
+			a.right(href='#top') Back to Top
+			p Copyright &copy; 2013 HS Hackers. Designed by <a href='http://victorlourng.com', target='_blank'>Victor</a>. Powered by <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a> and hosted on <a href='http://heroku.com', target='_blank'>Heroku</a>.
+			p If you run a meetup, please feel free to clone our site and make your own! You can <a href="https://github.com/hshackers/philly", target='_blank'>find it on GitHub</a>.
+	
 	//- scripts
 	script(src='/js/lib/jquery/jquery-1.10.2.min.js')
 	script(src='/js/lib/bootstrap/collapse.js')
