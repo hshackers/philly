@@ -1,0 +1,326 @@
+// BLOG
+// ------------------------------
+@post-image-width: 170px;
+.blog-post {
+	.clearfix();
+	text-align: center;
+	margin-bottom: 40px;
+	
+}
+.blog-post__image {
+	margin-bottom: 20px;
+}
+.blog-post__content {
+	text-align: left;
+}
+.blog-post__heading {
+	margin-top: 0;
+	
+	a {
+		color: @headings-color;
+	}
+}
+.blog-post__author {
+	color: mix(@body-bg, @text-color, 50%);
+	font-weight: 200;
+	
+	a {
+		color: mix(@body-bg, @text-color, 50%);
+	}
+}
+
+@media (min-width: @screen-sm-min) {
+	.blog-post__image {
+		float: left;
+		width: @post-image-width;
+	}
+	.blog-post__content {
+		margin-left: @post-image-width + 20;
+		&.link {
+			margin-left: 0;
+		}
+	}
+}
+
+
+// full post
+.full-post {
+	padding-bottom: 40px;
+}
+
+
+
+
+// LINKS
+// ------------------------------
+.links-list {
+	h3 {
+		margin: 5px 0 0 0;
+	}
+	
+	h4 a { color: @text-color; }
+	.byline { margin: 0 0 0 0; }
+	
+	.link {
+		font-size: @font-size-base + 2;
+		margin: 0;
+	}
+
+	.tags-list {
+		margin: 10px 0 0;
+		a {
+			padding: 2px 10px;
+			font-size: @font-size-base - 2;
+		}
+	}
+	
+	.description {
+		margin: 10px 0;
+	}
+}
+
+.tags-list {
+	position: relative;
+	overflow: hidden;
+	li {
+		float: left;
+		margin-right: 5px;
+		margin-bottom: 5px;
+	}
+	a {
+		padding: 2px 10px;
+		display: inline-block;
+		border-radius: @border-radius-base;
+		font-size: @font-size-base;
+		background-color: @gray-light;
+		color: white;
+		
+		&:hover {
+			text-decoration: none;
+			background-color: @link-color;
+		}
+		&.active {
+			background-color: @link-color;
+		}
+	}
+}
+
+.links-list + .links-list {
+	margin-top: 30px;
+}
+
+
+
+
+// FORMS
+// ------------------------------
+
+// twbs right aligned labels looks weird
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+// labels for checkboxes should look like content
+.checkbox { font-weight: inherit; }
+
+// allow gap between collapsed fields on small devices
+@media (max-width: @screen-xs-max) {
+	.form-group .row > [class^='col-'] {
+		margin-bottom: 10px;
+	}
+}
+
+// assume textarea's have adequate width
+// allow vertical resizing
+textarea {
+	.resizable(vertical);
+}
+
+
+
+// PAGE INTROS
+// ------------------------------
+.back-bar,
+.page-intro {
+	background-color: white;
+	border-bottom: 1px solid darken(desaturate(@body-bg, 30%), 8%);
+}
+.page-intro {
+	padding-bottom: 35px;
+	margin-bottom: 40px;
+	
+	p {
+		
+		font-size: floor(@font-size-base * 1.15);
+		font-weight: 200;
+		line-height: 1.4;
+		margin-bottom: 8px;
+
+		@media (min-width: @screen-sm-min) {
+			font-size: (@font-size-base * 1.5);
+		}
+		
+	}
+	
+	.buttons {
+		min-height: 30px;
+		margin-top: 14px;
+		
+		.btn {
+			margin-right: 10px;
+		}
+	
+		.twitter-follow-button {
+			position: absolute;
+			margin-top: 2px;
+		}
+	}
+}
+
+
+
+
+// MEETUPS
+// ------------------------------
+.meetup {
+	margin-top: 60px;
+}
+.meetup--present {
+	margin-top: 0;
+}
+.meetup-talks {
+	border-top: 1px dashed @hr-border;
+	font-size: @font-size-base;
+	padding-left: 40px;
+	padding-top: 20px;
+	position: relative;
+	
+	.meetup-talks__icon {
+		color: mix(@text-color, @body-bg, 30%);
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 20px;
+	}
+	.meetup-talks__heading {
+		.text-muted();
+		margin-top: 0;
+	}
+	.talk {
+		margin-bottom: 15px;
+	}
+	.talk__name {
+		color: @headings-color;
+		font-size: @font-size-large;
+	}
+	.talk__speaker {
+		// .text-muted();
+		margin-bottom: 5px;
+	}
+	.talk__resource {
+		.text-muted();
+	}
+}
+	
+
+
+
+// MISC
+// ------------------------------
+.back-bar {
+	padding-bottom: 10px;
+	padding-top: 10px;
+	
+	p {
+		margin-bottom: 8px;
+	}
+}
+.thumbnail {
+	background-color: white;
+}
+
+
+
+
+// organisers
+.about-organisers {
+	.organiser {
+		.img-wrapper {
+			.square( 40px );
+			overflow: hidden;
+			float: left;
+			margin-right: 9px;
+			
+			img {
+				.img-responsive();
+			}
+		}
+	}
+	.organiser__name {
+		margin: 0;
+	} 
+	.organiser__twitter {
+		font-size: @font-size-base;
+		margin-bottom: 9px;
+	} 
+}
+
+
+
+
+
+// share buttons
+.share-buttons {
+	margin: 20px 0;
+	min-height: 20px;
+	
+	@media (min-width: @screen-sm-min) {
+		&.right {
+			float: right;
+		
+			.share-button {
+				margin-left: 10px;
+				margin-right: 0;
+			}
+		}
+	}
+}	
+
+.share-button {
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
+	width: 76px;
+}
+
+
+
+// organisations
+.org__heading {
+	margin-top: 0;
+	
+	a {
+		color: @headings-color;
+	}
+}
+.org__location {
+	opacity: 0.8;
+}
+.org__location-icon {
+	float: left;
+	font-size: 42px;
+	margin-right: 10px;
+	// margin-top: 2px;
+}
+.org__location-address {
+	display: table;
+}
+.org__logo {
+	display: block;
+	margin-bottom: 20px;
+}
+@media (min-width: @screen-sm-min) {
+	.org__logo img {
+		.img-responsive();
+	}
+}

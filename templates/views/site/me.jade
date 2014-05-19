@@ -47,7 +47,7 @@ block content
 	.section.section-next-meetup
 		.container
 			.row
-				.col-sm-8.col-md-7
+				.col-66.col-md-7
 					if meetups.next
 						#next-meetup(data-id=meetups.next.id)
 							.meetup-calendar.calendar
@@ -78,10 +78,10 @@ block content
 					else
 						h2.mt-0 No upcoming meetups...
 						p Follow us on Twitter to find out when we anounce the next meetup
-						p: a(href="https://twitter.com/sydjs", class="twitter-follow-button", data-show-count="true") Follow @sydjs
+						p: a(href="https://twitter.com/hshackersphilly", class="twitter-follow-button", data-show-count="true") Follow @hshackersphilly
 
 				if rsvps.history.length
-					.col-25.col-md-push-1
+					.col-33.col-md-push-1
 						h4.mt-0 You've been to...
 						ul
 							each attendedMU in rsvps.history
@@ -93,7 +93,7 @@ block content
 		.container
 			h2.mt-0 Your profile
 			.row
-				.col-sm-8.col-md-7
+				.col-66.col-md-7
 					form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
 						input(type='hidden', name='action', value='profile.bottom')
 						h3.mt-0 Public info
@@ -114,8 +114,8 @@ block content
 							.col-sm-10
 								if user.photo.exists
 									.row
-										.col-sm-3: img(src=user._.photo.thumbnail(120,120)).img-responsive
-										.col-sm-9: input(type='file', name='photo_upload')
+										.col-25: img(src=user._.photo.thumbnail(120,120)).img-responsive
+										.col-75: input(type='file', name='photo_upload')
 								else
 									input(type='file', name='photo_upload')
 						.form-group
@@ -144,7 +144,7 @@ block content
 						.form-group
 							.col-sm-10.col-sm-offset-2
 								button(type='submit', data-loading-text="Saving...").btn.btn-primary Save profile
-				.col-25.col-md-push-1
+				.col-33.col-md-push-1
 					form(method='post', autocomplete='off')
 						input(type='hidden', name='action', value='profile.password')
 						h3.mt-0 Change password

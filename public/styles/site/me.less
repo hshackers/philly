@@ -1,0 +1,131 @@
+.section-profile-form {
+	border-bottom: 0 none;
+}
+.profile-form {
+	.header {
+		color: mix(@body-bg, @text-color, 50%)
+	}
+
+	.input {
+		border-radius: @input-border-radius;
+		padding: @padding-base-vertical @padding-base-horizontal;
+		width: 100%;
+	}
+	.input-faded {
+		.transition( all 200ms linear );
+		.box-shadow( none );
+		background-color: @body-bg;
+		border: 1px solid mix(black,@body-bg, 8%);
+
+		&:hover {
+			border-color: mix(black,@body-bg, 18%);
+		}
+		&:focus {
+			background-color: white;
+			border-color: @link-color;
+			outline: 0;
+		}
+	}
+	.input-xl {
+		color: @text-color;
+		border-radius: @border-radius-large;
+		border-width: 2px;
+		font-size: 30px;
+		font-weight: 500;
+		padding: @padding-base-vertical @padding-base-horizontal;
+
+		@media (min-width: @screen-sm-min) {
+			font-size: 48px;
+		}
+	}
+
+	// labelling
+	.form-group {
+		position: relative;
+	}
+	.input-label {
+		.text-overflow();
+		color: mix(@body-bg, @text-color, 70%);
+		font-size: @font-size-small;
+		padding: @padding-base-vertical + 3 @padding-base-horizontal;
+		position: absolute;
+		text-transform: uppercase;
+		width: 100px;
+	}
+	.input-labelled {
+		padding-left: 100px;
+	}
+}
+.profile-form__heading {
+	color: mix(@body-bg,@text-color, 50%);
+}
+.section-next-meetup {
+	background-color: white;
+	border-bottom: 8px solid mix(@body-bg, black, 90%);
+	border-top: 8px solid mix(@body-bg, black, 90%);
+}
+
+// calendar
+@calendar-width:    100px;
+.calendar {
+	.center-block();
+	background-color: white;
+	border-radius: 4px;
+	text-align: center;
+	text-transform: uppercase;
+	width: @calendar-width;
+}
+.calendar--past {
+	color: @gray-light;
+
+	.calendar__header {
+		background-color: mix(black, @body-bg, 30%);
+	}
+}
+	.calendar__header {
+		.border-top-radius( 4px );
+		background-color: @brand-danger;
+		color: white;
+		line-height: 24px;
+		height: 24px;
+	}
+	.calendar__body {
+		.border-bottom-radius( 4px );
+		border-style: solid;
+		border-width: 0 1px 1px;
+		border-color: transparent #eee #d6d6d6;
+		line-height: 1;
+		padding-bottom: 5px;
+		// padding-top: 5px;
+	}
+	.calendar__date {
+		font-size: 48px;
+	}
+
+.meetup-calendar {
+	margin-bottom: 20px;
+}
+@media (min-width: @screen-sm-min) {
+	.meetup-calendar {
+		float: left;
+	}
+	.meetup-content {
+		margin-left: @calendar-width + 20;
+	}
+}
+
+//- Create form
+.create-form {
+	.label-icon {
+		color: @gray-light;
+		font-size: 52px;
+	}
+	.form-group {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		h1 {
+			font-size: @font-size-base + 16;
+		}
+		label { margin-bottom: 10px; }
+	}
+}

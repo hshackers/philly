@@ -1,22 +1,32 @@
 extends ../../layouts/session
 
 mixin social-signin()
-	p.signin-form-heading Use a social account
-	.social-signup-buttons
+
+	h1 Welcome Back!
+	p.signin-form-heading One-click signin!
+	.social-signup-buttons.rounded
 			
 		.signup-button: a(href='/authentication/github', title='Sign in with Github').btn.btn-github.btn-block
-			span.entypo-social.entypo-github
+			i.icon-github 
 			span.signup-button__text  Github
-			
+
 		.signup-button: a(href='/authentication/twitter', title='Sign in with Twitter').btn.btn-twitter.btn-block
-			span.entypo-social.entypo-twitter
+			i.icon-twitter 
 			span.signup-button__text  Twitter
+
+		.signup-button: a(href='http://auth.hackerverse.net/client/HSHackers', title='Sign in with Hackerverse', style='background:#F1D715;color:#000;border-color:#B8A203;').btn.btn-twitter.btn-block
+			i.icon-tools 
+			span.signup-button__text  Hackerverse
 		
-		.signup-button: a(href='/authentication/facebook', title='Sign in with Facebook').btn.btn-facebook.btn-block
+		//- .signup-button: a(href='/authentication/meetup', title='Sign in with Meetup').btn.btn-meetup.btn-block
+			span.entypo-social.entypo-meetup
+			span.signup-button__text  Meetup
+
+		//- .signup-button: a(href='/authentication/facebook', title='Sign in with Facebook').btn.btn-facebook.btn-block
 			span.entypo-social.entypo-s-facebook
 			span.signup-button__text  Facebook
 		
-	p.signin-form-heading or your email
+	p.signin-form-heading Or do it the old-fashioned way:
 
 block content
 	form(method='post',role='signin', style=(form.action && form.action != 'signin' ? 'display: none;' : null), novalidate).signin-form
@@ -24,19 +34,19 @@ block content
 		
 		+social-signin
 		
-		.form-control-box
+		.rounded
 			label(for='signin-email').sr-only Email
 			input(type='email', name='signin_email', placeholder='Email', id='signin-email', value=signin_email).form-control
 			label(for='signin-password').sr-only Password
 			input(type='password', name='signin_password', placeholder='Password', id='signin-password', value='').form-control
-		button(type='submit').btn.btn-block.btn-submit Sign in
+			button(type='submit').btn.btn-success.btn-block.btn-submit Sign in
 	
 	form(method='post',role='join', style=(form.action != 'join' ? 'display: none;' : null), novalidate).join-form
 		input(type='hidden', name='action', value='join')
 		
 		+social-signin
 		
-		.form-control-box
+		.rounded
 			label(for='join-name').sr-only Email
 			input(type='text', name='join_name', placeholder='Name', id='join-name', value=form.join_name).form-control
 			label(for='join-email').sr-only Email
@@ -47,7 +57,7 @@ block content
 			input(type='password', name='join_passwordConfirm', placeholder='Confirm Password', id='signin-passwordConfirm', value='').form-control
 			label(for='join-twitter').sr-only Twitter
 			input(type='text', name='join_twitter', placeholder='Twitter', id='signin-twitter', value=form.join_twitter).form-control
-		button(type='submit').btn.btn-block.btn-submit Join HS Hackers
+			button(type='submit').btn.btn-success.btn-block.btn-submit Join HS Hackers
 	
 	p.text-center
 		a(href=js).btn.btn-block.btn-link.js-toggle-join Join HS Hackers
