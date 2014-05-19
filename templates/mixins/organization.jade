@@ -1,6 +1,6 @@
 mixin organizations(org)
 	.org.row
-		.col-sm-3.col-md-2.text-center
+		.col-25.col-md-2.text-center
 			if org.logo.exists
 				if org.website
 					a(href=org.website, target='_blank').org__logo
@@ -8,7 +8,7 @@ mixin organizations(org)
 				else
 					span.org__logo
 						img(src=org._.logo.limit(120,120), alt=org.name)
-		.col-sm-9.col-md-8
+		.col-75.col-md-8
 			h2.org__heading
 				if org.website
 					a(href=org.website, target='_blank')= org.name
@@ -23,7 +23,7 @@ mixin organizations(org)
 			if org.website
 				h5: a(href=org.website, target='_blank')= org.website.replace('http://', '')
 		if org.members && org.members.length
-			.col-sm-9.col-sm-offset-3.col-md-2.col-md-offset-0
+			.col-75.col-sm-offset-3.col-md-2.col-md-offset-0
 				hr.line-dashed.visible-xs.visible-sm
 				h6.text-muted.mt-0 Members in #{org.name}
 				ul.list-unstyled

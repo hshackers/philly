@@ -69,7 +69,7 @@ Post.schema.methods.notifyAdmins = function(callback) {
 				to: admin,
 				from: {
 					name: 'HS Hackers',
-					email: 'contact@sydjs.com'
+					email: 'contact@HS Hackers.com'
 				}
 			}, done);
 			

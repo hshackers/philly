@@ -1,3 +1,20 @@
+// TODO: Move off of these icon fonts
+@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+@import "bootstrap/type.less";
+@import "bootstrap/buttons.less";
+
+@import "site/variables.less";
+@import "site/entypo.less";
+@import "site/layout.less";
+@import "site/type.less";
+@import "site/misc.less";
+
+// TODO: Move off of these stylesheets
+@import "site/home.less";
+@import "site/members.less";
+@import "site/me.less";
+
 // Box Sizing
 * { box-sizing: border-box; margin: 0; }
 
@@ -10,15 +27,19 @@
 @dosis: 'Dosis','Tahoma',sans-serif;
 @montserrat: 'Montserrat', sans-serif;
 @opensans: 'Open Sans', Arial;
+@fonts: @exo;
 
 // Color Stacks
 @accent: #26C7DF;
 @red: #DA4453;
 @spacegray: #1F282D;
+@blue: #4A89DC;
+@lightgray: #DDD;
+@green: #8CC152;
 
 // Other Variables
-@transition: background 300ms ease;
-@radius: 2px;
+@transition: all 300ms ease;
+@radius: 4px;
 
 // Scrollbars
 ::-webkit-scrollbar {
@@ -80,11 +101,13 @@ body {
   text-rendering: geometricPrecision;
 }
 
-#base-wrapper, .push {
+#base-wrapper {
     min-height: 100%;
 }
 
-
+.sr-only {
+    display: none;
+}
 
 a {
   text-decoration: none;
@@ -95,6 +118,7 @@ h1, h2, h3 {
   text-align: inherit;
   margin: 0px;
   display: block;
+  color: inherit;
 }
 h1 {
     font-size: 50px;
@@ -103,7 +127,10 @@ header, section, .section, aside, footer {
     position: relative;
     width: 100%;
     background-position: center;
-    background: white;
+}
+
+p {
+    margin: 1em 0;
 }
 
 .dark-overlay {
@@ -126,8 +153,30 @@ header, section, .section, aside, footer {
 .btn {
     display: inline-block;
     vertical-align: middle;
+    // border: 2px solid;
+    border-radius: @radius;
     padding: 6px;
-    border: 2px solid;
+    margin-right: 12px;
+    // border: 2px solid;
+    &.btn-link {
+       border: 2px solid white;
+       background: none;
+       transition: @transition;
+       &:hover {
+        color: white;
+        text-decoration: none;
+        background: rgba(255,255,255,.5);
+       }
+    }
+}
+
+// Alerts
+
+.alert {
+    background: #F00;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
     border-radius: @radius;
 }
 
@@ -138,6 +187,9 @@ nav {
     left: 0px;
     width: 100%;
     z-index: 9001;
+    .mobile-menu {
+        display: inline;
+    }
     .nav-item {
         display: inline-block;
         vertical-align: top;
@@ -178,12 +230,15 @@ nav {
         background: none;
         transition: @transition;
         height: 35px;
+        border: 2px solid white;
         &:hover {
             background: rgba(255,255,255,.15);
+            color: white;
         }
         &:first-child {
             border-top-right-radius:0;
             border-bottom-right-radius:0;
+            margin-right: 0px;
         }
         &:last-child {
             border-top-left-radius:0;
@@ -207,8 +262,15 @@ header, .page-intro, .hero {
     color: white;
     text-align: center;
     padding: 60px 0;
+    box-shadow: inset 0 -8px 0 0 rgba(255, 255, 255, 0.5);
     a {
         color: white;
+    }
+    p {
+    }
+    .btn {
+        padding: 3px 6px;
+        vertical-align: top;
     }
 }
 
@@ -225,6 +287,56 @@ header, .page-intro, .hero {
 // Lead
 p.lead {
     font-size: 20px;
+}
+
+// Homepage
+.directions-button {
+    transition: @transition;
+    color: @blue;
+}
+
+.home-links {
+    background: @lightgray;
+    border-top: 8px solid @green;
+    .link-icon-badge {
+        text-align: center;
+        color: white;
+        margin: auto;
+        width: 140px;
+        height: 140px;
+        line-height: 100px;
+        vertical-align: top;
+        transition: @transition;
+        background: @green;
+        &:hover {
+            transform: rotate(10deg);
+        }
+        i.logo {
+            font-size: 110px;
+        }
+    }
+    h2 {
+        text-align: center;
+        margin-top: 30px;
+    }
+    .home-links-anchor {
+        .btn;
+        .btn-lg;
+        .btn-link;
+        color: black!important;
+        border-color: black;
+    }
+    .row:last-child .col-33 p:last-child {
+        text-align: center;
+    }
+}
+
+// Edit Profile
+.section-profile-form {
+    border-top: 57px solid @spacegray;
+    input {
+        margin-bottom: 10px;
+    }
 }
 
 // Classic Header
@@ -245,6 +357,7 @@ header {
     position: relative;
     z-index: 1;
     text-align: center;
+    margin-bottom: 0px;
     // Fancy h1
     h1 {
         display: inline-block;
@@ -317,12 +430,48 @@ header:hover:before {
     background: @spacegray;
     color: white;
     padding-top: 120px;
+    min-height: 100%;
+    text-align: center;
     .main-body {
         max-width: 500px!important;
         margin: auto;
     }
     nav {
         text-align: center;
+    }
+    label {
+        visibility: hidden;
+    }
+    input {
+        width: 100%;
+        display: block;
+        .btn;
+        margin-bottom: 0px;
+        border: 0px;
+        border-bottom: 1px solid @spacegray;
+        background: white;
+        color: black;
+    }
+    .rounded {
+        border-radius: @radius;
+        overflow: hidden;
+        input, button, .btn {
+            border-radius: 0px!important;
+        }
+    }
+    label {
+        display: none;
+    }
+    a {
+        color: white;
+    }
+    .btn {
+        .btn-lg;
+    }
+    .btn-link, .btn-default {
+        .btn-default;
+        background: none;
+        color: white;
     }
 }
 
@@ -740,5 +889,16 @@ div.map-legend.wax-legend {
   }
   .events .event:before, .events .event:nth-child(2n+1):before,  .events .event:after, .events .event:nth-child(2n+1):after {
     display: none;
+  }
+  // Nav
+  nav .nav-item:not(.brand) {
+    display: block;
+  }
+  nav {
+    position: relative;
+    background: @spacegray;
+    .right {
+        float: initial;
+    }
   }
 }

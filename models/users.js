@@ -123,7 +123,7 @@ User.schema.methods.resetPassword = function(callback) {
 			to: user,
 			from: {
 				name: 'HS Hackers',
-				email: 'contact@sydjs.com'
+				email: 'contact@HS Hackers.com'
 			}
 		}, callback);
 		

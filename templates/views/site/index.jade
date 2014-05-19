@@ -33,7 +33,7 @@ block content
 					div(data-ks-editable=editable(user, { list: 'Meetup', id: nextMeetup.id }))
 						h1= nextMeetup.name
 						.row
-							.col-sm-8
+							.col-66
 								if nextMeetup.description
 									p!= nextMeetup.description
 								if nextMeetup.talks.length
@@ -53,7 +53,7 @@ block content
 																= user.name.full + ' '
 																if user.twitter
 																	a(href='http://twitter.com/' + user.twitter.replace('@', ''), target='_blank' data-size="large")= user.twitter + ' '
-							.col-25
+							.col-33
 								dl.dl-horizontal.home-meetup__details-list
 									dt
 										.sr-only Date
@@ -73,11 +73,11 @@ block content
 								hr.line-dashed
 								p: a(href='/meetups').text-muted All our meetups &rarr;
 
-								+advertisement()
+								//- +advertisement()
 			.home-meetup-map
 				#meetup-map.map
-				a(href='https://maps.google.com.au/?daddr=' + nextMeetup.place, target='_blank').directions-button
-					span.entypo.entypo-popup
+				a(href='https://maps.google.com/?daddr=' + nextMeetup.place, target='_blank').directions-button
+					i.icon-point 
 					|  Get Directions
 		
 
@@ -110,33 +110,33 @@ block content
 	//- Links
 	section.section.home-links: .container
 		.row
-			.col-25
-				a(href='/members/organizations').link-icon-badge: span.link-icon.entypo.entypo-globe
-				h2.home-links__heading: a(href='/members/organizations') Organizations
-				p Ju wan jQuery? Keen on Keystone? Looking for Lint? Need NICTA? Want a Webstack?
-				p There's a whole range of organizations that just help make your JavaScript life that much easier.
-
-			.col-25
-				a(href='/members').link-icon-badge: span.link-icon.entypo.entypo-users
-				h2.home-links__heading: a(href='/members') Members
-				p At HS Hackers, all members are equal! To misquote Orwell, though, some are more equal than others.
-				p Want to raise your profile? Volunteer and we'll add you to the roster! Want to find out who's stepped up? It's all here.
-
-			.col-25
-				a(href='/links').link-icon-badge: span.link-icon.entypo.entypo-link
+			.col-33
+				a(href='/links').link-icon-badge: i.icon-monocle.logo
 				h2.home-links__heading: a(href='/links') Links
-				p Got a favourite CDN? A favourite library? A micro-library? We do! And you'll find some of them linked here.
-				p You might even find some links to things that _aren't_ JavaScript? That's right! Some things aren't JavaScript.
+				p Got a favorite CDN? A favorite library? Some advice? We do! And you'll find some of them linked here.
+				p You might even find some links to things that even out of this world! After all, is all life really on Earth?
+
+			.col-33
+				a(href='/members').link-icon-badge: i.icon-network.logo
+				h2.home-links__heading: a(href='/members') Members
+				p At HS Hackers, all teenage coders are created equal! To misquote Orwell, though, some are more equal than others.
+				p Check out the talent we have to offer by follow all of us on GitHub and Twitter!
+
+			.col-33
+				a(href='/members/mentors').link-icon-badge: i.icon-remote.logo
+				h2.home-links__heading: a(href='/members/mentors') Mentoring
+				p Ju wan jQuery? Starting a startup? Hax on Haskell? Need Special Effects? Want a Webstack?
+				p There's a whole range of mentors here to help make your life much easier.
 
 		.row
-			.col-25
-				p: a(href='/members/organizations', class='home-links-anchor') View organizations
+			.col-33
+				p: a(href='/links', class='home-links-anchor') View links
 
-			.col-25
+			.col-33
 				p: a(href='/members', class='home-links-anchor') View members
 
-			.col-25
-				p: a(href='/links', class='home-links-anchor') View links
+			.col-33
+				p: a(href='/mentors', class='home-links-anchor') View mentors
 
 block js
 	// twitter
