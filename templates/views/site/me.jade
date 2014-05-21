@@ -97,30 +97,30 @@ block content
 					form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
 						input(type='hidden', name='action', value='profile.bottom')
 						h3.mt-0 Public info
-						.form-group
-							.col-sm-10.col-sm-offset-2
+						.form-group.row
+							.col-85.col-sm-offset-2
 								label.checkbox
 									input(type='checkbox', name='isPublic', value='true', checked=user.isPublic ? 'true' : null)
 									|  Show my profile on the HS Hackers website
-						.form-group
-							label.col-sm-2.control-label Bio
+						.form-group.row
+							label.col-15.control-label Bio
 								br
 								.text-muted (markdown)
-							.col-sm-10
+							.col-85
 								textarea(name='bio', rows=5).form-control=user.bio.md
 						
-						.form-group
-							label.col-sm-2.control-label Photo
-							.col-sm-10
+						.form-group.row
+							label.col-15.control-label Photo
+							.col-85
 								if user.photo.exists
 									.row
 										.col-25: img(src=user._.photo.thumbnail(120,120)).img-responsive
 										.col-75: input(type='file', name='photo_upload')
 								else
 									input(type='file', name='photo_upload')
-						.form-group
-							label.col-sm-2.control-label Mentoring
-							.col-sm-10
+						.form-group.row
+							label.col-15.control-label Mentoring
+							.col-85
 								label.checkbox
 									input(type='checkbox', name='mentoring.available', value='true', checked=user.mentoring.available)
 									|  Available as a mentor
@@ -133,34 +133,117 @@ block content
 								label.checkbox
 									input(type='checkbox', name='mentoring.swap', value='true', checked=user.mentoring.swap)
 									|  For Swap
-						.form-group
-							label.col-sm-2.control-label I have...
-							.col-sm-10
+						.form-group.row
+							label.col-15.control-label I have...
+							.col-85
 								input(type='text', name='mentoring.have', placeholder='', value=user.mentoring.have).form-control
-						.form-group
-							label.col-sm-2.control-label I want...
-							.col-sm-10
+						.form-group.row
+							label.col-15.control-label I want...
+							.col-85
 								input(type='text', name='mentoring.want', placeholder='', value= user.mentoring.want).form-control
-						.form-group
-							.col-sm-10.col-sm-offset-2
+						.form-group.row
+							.col-85.col-sm-offset-2
 								button(type='submit', data-loading-text="Saving...").btn.btn-primary Save profile
 				.col-33.col-md-push-1
 					form(method='post', autocomplete='off')
 						input(type='hidden', name='action', value='profile.password')
 						h3.mt-0 Change password
 						//-
-							.form-group
+							.form-group.row
 								label(for='change-password').sr-only Current Password
 								input(type='password', name='currentPassword', placeholder='Password', id='change-password').form-control
-						.form-group
+						.form-group.row
 							label(for='change-passwordNew').sr-only New Password
 							input(type='password', name='password', placeholder='New Password', id='change-passwordNew').form-control
-						.form-group
+						.form-group.row
 							label(for='change-passwordConfirm').sr-only Confirm Password
 							input(type='password', name='password_confirm', placeholder='Confirm Password', id='signin-passwordConfirm').form-control
-						.form-group
+						.form-group.row
 							button(type='submit', data-loading-text="Changing...").btn.btn-primary Change
-							
+	
+	//- CHIPOTLE
+	.section.section-public-form.section-chipotle
+		.container
+			h2.mt-0 Chipotle!
+			.row
+				.col-66.col-md-7
+					form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
+						input(type='hidden', name='action', value='profile.chipotle')
+						.form-group.row
+							label.col-15.control-label Type
+							.col-85
+								select(name='type' selected=user.type)
+									option(value='burrito') Burrito
+									option(value='burrito bowl') Burrito Bowl
+									option(value='salad bowl') Salad Bowl
+									option(value='crispy tacos') Crispy Tacos
+									option(value='soft tacos') Soft Tacos
+									option(value='taco kit') Taco Kit
+									option(value='quesadilla') Quesadilla
+						.form-group.row
+							label.col-15.control-label Meat
+							.col-85
+								select(name='meat' selected=user.meat)
+									option(value='no meat') No Meat
+									option(value='chicken') Chicken
+									option(value='steak') Steak
+									option(value='carnitas') Carnitas
+									option(value='barbacoa') Barbacoa
+									option(value='veggie') Veggie
+						.form-group.row
+							label.col-15.control-label Beans
+							.col-85
+								select(name='beans' selected=user.beans)
+									option(value='no beans') No Beans
+									option(value='black beans') Black Beans
+									option(value='pinto beans') Pinto Beans
+						.form-group.row
+							label.col-15.control-label Rice
+							.col-85
+								select(name='rice' selected=user.rice)
+									option(value='no rice') No Rice
+									option(value='white rice') White Rice
+									option(value='brown rice') Brown Rice
+						.form-group.row
+							label.col-15.control-label Salsa
+							.col-85
+								select(name='salsa' selected=user.salsa)
+									option(value='no salsa') No Salsa
+									option(value='mild tomatoes') Mild Tomatoes
+									option(value='medium verde') Medium Verde
+									option(value='hot sauce') Hot Sauce
+						.form-group.row
+							label.col-15.control-label cheese
+							.col-85
+								input(type='checkbox', name='cheese', value='true', checked=user.cheese ? 'true' : null)
+						.form-group.row
+							label.col-15.control-label corn
+							.col-85
+								input(type='checkbox', name='corn', value='true', checked=user.corn ? 'true' : null)
+						.form-group.row
+							label.col-15.control-label lettuce
+							.col-85
+								input(type='checkbox', name='lettuce', value='true', checked=user.lettuce ? 'true' : null)
+						.form-group.row
+							label.col-15.control-label sourcream
+							.col-85
+								input(type='checkbox', name='sourcream', value='true', checked=user.sourcream ? 'true' : null)
+						.form-group.row
+							label.col-15.control-label guacamole
+							.col-85
+								input(type='checkbox', name='guacamole', value='true', checked=user.guacamole ? 'true' : null)
+						.form-group.row
+							label.col-15.control-label chips
+							.col-85
+								input(type='checkbox', name='chips', value='true', checked=user.chips ? 'true' : null)
+						.form-group.row
+							label.col-15.control-label Notes
+							.col-85
+								textarea(name='notes', rows=5).form-control=user.notes.md
+						.form-group.row
+							.col-85.col-sm-offset-2
+								button(type='submit', data-loading-text="Saving...").btn.btn-primary Save profile
+
 block js
 	script(src='/js/lib/bootstrap/button.js')
 	script(src='/js/views/me.js')

@@ -1,17 +1,17 @@
 extends ../../layouts/default
 
 block intro
-	.page-intro: .container
+	.page-intro.page-intro-members: .container
 		h1 Members
 		p The people and organizations who are part of HS Hackers. Should you be here? Join us!
 		.buttons
 			if !user
-				a(href='/join').btn.btn-primary Join HS Hackers
-			a(href='/members/organizations').btn.btn-link View Organizations
+				a(href='/join').btn.btn-link Join HS Hackers
+			//- a(href='/members/organizations').btn.btn-link View Organizations
 			a(href='/members/mentors').btn.btn-link View Mentors
 
 block content
-	.container
+	section.section-members: .container
 
 		if members.length
 			ul#members.list-unstyled.members-list
@@ -47,7 +47,7 @@ block content
 									ul.list-unstyled
 										each talk in member.talks
 											li.media(class=moment(talk.meetup.date) < moment() ? 'past' : 'present')
-												.pull-left
+												.left
 													.date
 														small.block=talk.meetup._.date.format('MMM')
 														strong.block=talk.meetup._.date.format('DD')

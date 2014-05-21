@@ -1,7 +1,10 @@
 extends ../../layouts/default
 
 block content
-
+	.page-intro.page-intro-links
+		.container
+			h1 Add a link
+			p All links require approval.
 	.section
 		.container
 			form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal.create-form.profile-form
@@ -11,7 +14,6 @@ block content
 					
 					//- Title
 					.form-group
-						h1 Add a link
 						input(type='text', id='link-url', name='href', placeholder='Add your URL here').input.input-md.input-faded
 					.form-group
 						input(type='text', id='link-label', name='label', placeholder='Title').input.input-xl.input-faded

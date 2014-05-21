@@ -61,6 +61,25 @@ exports = module.exports = function(req, res) {
 		});
 	
 	});
+
+	view.on('post', { action: 'profile.chipotle' }, function(next) {
+
+		req.user.getUpdateHandler(req).process(req.body, {
+			fields: 'type,meat,beans,rice,salsa,cheese,corn,lettuce,sourcream,guacamole,chips,notes',
+			flashErrors: true
+		}, function(err) {
+
+		if (err) {
+			return next();
+		}
+		
+		req.flash('success', 'Yum! You sure have a taste for mexican food. :)');
+		return next();
+
+		});
+
+	});
+
 	
 	view.on('post', { action: 'profile.password' }, function(next) {
 	

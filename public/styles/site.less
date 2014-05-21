@@ -40,6 +40,8 @@
 // Other Variables
 @transition: all 300ms ease;
 @radius: 4px;
+@navbarheight: 57px;
+@negativenavbarheight: -57px;
 
 // Scrollbars
 ::-webkit-scrollbar {
@@ -178,6 +180,20 @@ p {
     margin-bottom: 20px;
     color: white;
     border-radius: @radius;
+}
+
+#base-body > #flash-messages {
+    background: @red;
+    margin: 0px;
+    padding: 60px 0 0 20px;
+    margin-bottom: @negativenavbarheight;
+    z-index: 20;
+    position: relative;
+    .alert {
+        background: none;
+        margin: 0px;
+        text-align: center;
+    }
 }
 
 // Navigation
@@ -330,6 +346,15 @@ p.lead {
         text-align: center;
     }
 }
+.home-blog {
+    h1 {
+        margin-bottom: 1em;
+        text-align: center;
+    }
+}
+.blog-post__image img {
+    max-width: 175px!important;
+}
 
 // Edit Profile
 .section-profile-form {
@@ -344,12 +369,13 @@ header {
     background-color: @spacegray;
     background-image: linear-gradient(115deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 50%), linear-gradient(to left, #005952 0%, #005E20 100%);
     background-size: cover;
+    background-position: center;
     color: white;
     display: block;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 3rem 16.66667%;
+    padding: 60px 16.66667%;
     position: relative;
     width: 100%;
     transition: all .25s ease-in-out;
@@ -358,6 +384,7 @@ header {
     z-index: 1;
     text-align: center;
     margin-bottom: 0px;
+    padding-top: 120px;
     // Fancy h1
     h1 {
         display: inline-block;
@@ -372,7 +399,7 @@ header {
         pointer: cursor;
     }
     h1:hover {
-        text-shadow: 0 1px 0 #C9CFCE, 0 2px 0 #BCC2C2, 0 3px 0 #AFB6B6, 0 4px 0 #A4ADAC, 0 5px 0 #9FA8A7, 0 6px 0 #99A3A2, 0 7px 0 #97A1A0, 0 8px 0 #949E9D, 0 0 5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.3);
+        text-shadow: 0 1px 0 #C9CFCE, 0 2px 0 #BCC2C2, 0 3px 0 #AFB6B6, 0 4px 0 #A4ADAC, 0 5px 0 #9FA8A7, 0 6px 0 #99A3A2; // 0 7px 0 #97A1A0, 0 8px 0 #949E9D, 0 0 5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.3);
     }
     div {
         position: relative;
@@ -542,11 +569,85 @@ i.logo {
     }
 }
 
-
 section {
     display: block;
     padding: 2em 0;
 }
+
+// Blog
+article.post {
+    .section;
+}
+article.post p {
+    max-width: 720px;
+    margin: auto;   
+}
+.back-bar {
+    background: @spacegray;
+    color: white;
+    text-align: center;
+    a {
+        color: white;
+    }
+}
+.section-members {
+    margin-top: -40px;
+}
+.comments .media-body {
+   background: white;
+   box-shadow: 0 2px 0 0 rgba(0,0,0,.25);
+   border-radius: @radius; 
+   padding: 20px;
+   margin-left: 15px;
+   margin-bottom: 20px;
+   margin-right: 20px;
+}
+.section-members .media-body {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    padding: 6px;
+    padding-left: 42px;
+}
+.tooltip {
+    background: black;
+    color: white;
+    display: inline-block;
+    border-radius: @radius;
+    position: absolute;
+    padding: 6px;
+}
+.comments, .section-members {
+    background: @lightgray;
+    .item>.member {
+        background: white;
+        box-shadow: 0 2px 0 0 rgba(0,0,0,.25);
+        border-radius: @radius;
+        // display: inline-block;
+    }
+    .media, .comment, .comment-form {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 0px;
+    }
+    .media-body {
+        // Add triangle here
+        textarea {
+            border: none;
+            border-bottom: 4px dashed @lightgray;
+            height: 5em;
+            &:focus {
+                border-bottom-color: @green;
+            }
+        }
+    }
+    p {
+        margin: 0px;
+
+    }
+}
+.pull-left {}
+
 #schedule, #rsvp {
     text-align: center;
 }
@@ -756,13 +857,18 @@ section {
         box-shadow: 0 0 12px @accent;
     }
 }
+
+// Map
 #map {
     position: relative;
     height: 500px;
     display: block;
     background: #404040;
-    background: url(../img/giftly.png);
-    background-size: 150px;
+    background: url(../images/giftly.png)!important;
+    background-size: 150px!important;
+    .leaflet-control-attribution {
+        display: none;
+    }
     iframe {
         width: 100%;
         line-height: 1em;
