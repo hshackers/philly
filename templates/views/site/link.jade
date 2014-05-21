@@ -1,18 +1,15 @@
 extends ../../layouts/default
 
 block intro
-	.back-bar
-		.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
-			.xs-right: a(href='/links').text-muted &larr; Back to Links
 
 
 block content
-	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+	div
 		article.full-post
 			if !link
 				h2 Invalid Link.
 			else
-				header
+				header: .container
 					h1.mb-0= link.label
 					h4.blog-post__author Shared
 						if link.publishedDate
@@ -28,37 +25,39 @@ block content
 							a(href="https://twitter.com/share", data-via="HS Hackers", data-hashtags="HS Hackers", data-count="button", data-dnt="true").twitter-share-button Tweet
 						span.share-button
 							.g-plusone(data-size="medium")
-				.link
-					h3: a(href=link.href, target='_blank'): em!=link.href
-				.post
-					!= link.label
-				hr
 
-				.comments
+				article.post: .container
+					h3: p.link: a(href=link.href, target='_blank'): em!=link.href
+					p.post
+						!= link.label
+				.back-bar
+					.container: .row: .col-85.col-sm-offset-1.col-md-8.col-md-offset-2
+						.xs-right: a(href='/links').text-muted &larr; Back to Links
+
+				.comments: .container
 					h4=link.comments.length == 0 ? 'Be the first to reply' : plural(link.comments.length, '* comment', '* comments')
 					.comment.mt-1
 						for comment in link.comments
 							if comment.author
 								.media
-									.pull-left
+									.left
 										img(src=comment.author.photo.exists ? comment.author._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=comment.author.name.full, width=40, height=40).media-object.img-circle
 									.media-body
 										h5.mt-0
 											=comment.author.name.full
 											span.text-muted  &middot; #{moment(comment.publishedOn).fromNow()}
 										!=comment.content.html
-				if user
-					//- Reply form
-					form(method='post').comment-form.mt-5
-						input(type='hidden', name='action', value='create-comment')
-						.media
-							.pull-left
-								img(src=user.photo.exists ? user._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=user.name.full, width=40, height=40).img-responsive.img-circle
-							.media-body
-								textarea(placeholder='Add your comment...', name='content').form-control
-								.form-inline.mv-5
-									button(type='submit').btn.btn-success Submit
-
+					if user
+						//- Reply form
+						form(method='post').comment-form.mt-5
+							input(type='hidden', name='action', value='create-comment')
+							.media
+								.left
+									img(src=user.photo.exists ? user._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=user.name.full, width=40, height=40).img-responsive.img-circle
+								.media-body
+									textarea(placeholder='Share your thoughts...', name='content').form-control
+									.form-inline.mv-5
+										button(type='submit').btn.btn-success Submit
 
 
 block js

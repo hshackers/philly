@@ -31,6 +31,20 @@ User.add({
 	twitter: { type: String, width: 'short' },
 	website: { type: Types.Url },
 	bio: { type: Types.Markdown }
+}, 
+'Chipotle', {
+	type: { type: Types.Select, options: 'burrito, burrito bowl, salad bowl, crispy tacos, soft tacos, taco kit, quesadilla', default: 'burrito bowl', index: true },
+	meat: { type: Types.Select, options: 'no meat, chicken, steak, carnitas, barbacoa, veggie', default: 'chicken', index: true },
+	beans: { type: Types.Select, options: 'no beans, black beans, pinto beans', default: 'black beans', index: true },
+	rice: { type: Types.Select, options: 'no rice, white rice, brown rice', default: 'white rice', index: true },
+	salsa: { type: Types.Select, options: 'no salsa, mild tomatoes, medium verde, hot sauce', default: 'mild tomatoes', index: true },
+	cheese: Boolean,
+	corn: Boolean,
+	lettuce: Boolean,
+	sourcream: Boolean,
+	guacamole: Boolean,
+	chips: Boolean,
+	notes: { type: Types.Markdown }
 }, 'Notifications', {
 	notifications: {
 		posts: Boolean,

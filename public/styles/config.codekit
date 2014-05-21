@@ -962,7 +962,7 @@
 		"strictMath": 0,
 		"strictUnits": 0
 		},
-	"\/site\/HS Hackers.less": {
+	"\/site\/sydjs.less": {
 		"allowInsecureImports": 0,
 		"createSourceMap": 0,
 		"disableJavascript": 0,
@@ -970,8 +970,8 @@
 		"ieCompatibility": 1,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/site\/HS Hackers.less",
-		"outputAbbreviatedPath": "\/css\/HS Hackers.css",
+		"inputAbbreviatedPath": "\/site\/sydjs.less",
+		"outputAbbreviatedPath": "\/css\/sydjs.css",
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
 		"relativeURLS": 0,

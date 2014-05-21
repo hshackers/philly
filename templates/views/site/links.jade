@@ -3,7 +3,7 @@ extends ../../layouts/default
 include ../../mixins/link
 
 block intro
-	.page-intro: .container
+	.page-intro.page-intro-links: .container
 		h1 Links
 		if data.tag
 			p Tutorials, Libraries, Frameworks and blog posts under <strong>#{data.tag.name}</strong>
@@ -11,10 +11,10 @@ block intro
 			p Tutorials, Libraries, Frameworks and blog posts mentioned in HS Hackers talks, or just of general usefulness.
 		.buttons
 			if !user
-				a(href='/join').btn.btn-primary Join HS Hackers
+				a(href='/join').btn.btn-link Join HS Hackers
 				a(href='/signin').btn.btn-link Sign In
 			else
-				a(href='/me/create/link').btn.btn-primary Add link
+				a(href='/me/create/link').btn.btn-link Add link
 
 block content
 	.container

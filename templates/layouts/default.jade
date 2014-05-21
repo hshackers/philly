@@ -107,7 +107,11 @@ html
 	
 	if user && user.canAccessKeystone
 		script(src='/keystone/js/content/editor.js')
-	
+
+	//- Mapbox
+	script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js')
+	link(href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css', rel='stylesheet')
+
 	script(src='/js/site.js')
 	
 	block js

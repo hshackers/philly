@@ -9,8 +9,9 @@ block content
 
 	header.section.welcome.page-intro
 		.container
+			a(href='http://facebook.com/groups/PennAppsHS/'): p.lead This is High School Hackers.
 			h1 We build, create, and innovate.
-			p.lead Monthly meetups on the 2nd Saturday of each month.
+			a(href='/meetups'): p.lead Meetups are held on the 2nd Saturday of each month.
 	//- Hero
 	if nextMeetup
 		- lastMeetup = false;
@@ -39,7 +40,7 @@ block content
 								if nextMeetup.talks.length
 									.meetup-talks
 										span.meetup-talks__icon.entypo.entypo-large.entypo-comment
-										h4.meetup-talks__heading Talks on the night
+										h4.meetup-talks__heading Talks at this meetup
 										ul.list-unstyled
 											each talk in nextMeetup.talks
 												li.talk
@@ -69,13 +70,13 @@ block content
 									dd=nextMeetup.place
 								if !lastMeetup
 									.register-btn
-										a(href='/attend', disabled=!nextMeetup.rsvpsAvailable).btn.btn-lg.btn-block.btn-register= nextMeetup.rsvpsAvailable ? 'Register' : 'Sold out!'
+									a(href='/attend', disabled=!nextMeetup.rsvpsAvailable).btn.btn-lg.btn-block.btn-register= nextMeetup.rsvpsAvailable ? 'Register' : 'No Spots Left!'
 								hr.line-dashed
 								p: a(href='/meetups').text-muted All our meetups &rarr;
 
 								//- +advertisement()
 			.home-meetup-map
-				#meetup-map.map
+				#map.map
 				a(href='https://maps.google.com/?daddr=' + nextMeetup.place, target='_blank').directions-button
 					i.icon-point 
 					|  Get Directions
@@ -98,6 +99,7 @@ block content
 	//- Blog
 	if posts.length
 		section.section.home-blog: .container
+			h1 Recent Posts
 			.blog(itemscope itemtype="http://schema.org/Blog")
 				for post in posts
 					+post(post)

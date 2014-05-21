@@ -1,4 +1,5 @@
 mixin meetup(meetup, mode)
+	hr.line-thick
 	.meetup(class='meetup--'+mode)
 		.meetup-calendar.calendar(class=mode == 'past' ? 'calendar--past' : null)
 			.calendar__header=meetup._.date.format('MMM')
