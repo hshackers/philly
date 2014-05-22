@@ -162,9 +162,10 @@ block content
 							button(type='submit', data-loading-text="Changing...").btn.btn-primary Change
 	
 	//- CHIPOTLE
-	.section.section-public-form.section-chipotle
+	.section.section-chipotle-form
 		.container
-			h2.mt-0 Chipotle!
+			h2.mt-0 Chipotle (Coming Soon)
+			p We will provide chipotle at a majority of our meetups. Help make our lives easier by indicating your prefrences below.
 			.row
 				.col-66.col-md-7
 					form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
@@ -172,7 +173,7 @@ block content
 						.form-group.row
 							label.col-15.control-label Type
 							.col-85
-								select(name='type' selected=user.type)
+								select(name='type' selected=user.type disabled)
 									option(value='burrito') Burrito
 									option(value='burrito bowl') Burrito Bowl
 									option(value='salad bowl') Salad Bowl
@@ -183,7 +184,7 @@ block content
 						.form-group.row
 							label.col-15.control-label Meat
 							.col-85
-								select(name='meat' selected=user.meat)
+								select(name='meat' selected=user.meat disabled)
 									option(value='no meat') No Meat
 									option(value='chicken') Chicken
 									option(value='steak') Steak
@@ -193,53 +194,53 @@ block content
 						.form-group.row
 							label.col-15.control-label Beans
 							.col-85
-								select(name='beans' selected=user.beans)
+								select(name='beans' selected=user.beans disabled)
 									option(value='no beans') No Beans
 									option(value='black beans') Black Beans
 									option(value='pinto beans') Pinto Beans
 						.form-group.row
 							label.col-15.control-label Rice
 							.col-85
-								select(name='rice' selected=user.rice)
+								select(name='rice' selected=user.rice disabled)
 									option(value='no rice') No Rice
 									option(value='white rice') White Rice
 									option(value='brown rice') Brown Rice
 						.form-group.row
 							label.col-15.control-label Salsa
 							.col-85
-								select(name='salsa' selected=user.salsa)
+								select(name='salsa' selected=user.salsa disabled)
 									option(value='no salsa') No Salsa
 									option(value='mild tomatoes') Mild Tomatoes
 									option(value='medium verde') Medium Verde
 									option(value='hot sauce') Hot Sauce
 						.form-group.row
-							label.col-15.control-label cheese
+							label.col-15.control-label Cheese
 							.col-85
-								input(type='checkbox', name='cheese', value='true', checked=user.cheese ? 'true' : null)
+								input(type='checkbox', name='cheese', value='true', checked=user.cheese ? 'true' : null disabled)
 						.form-group.row
-							label.col-15.control-label corn
+							label.col-15.control-label Corn
 							.col-85
-								input(type='checkbox', name='corn', value='true', checked=user.corn ? 'true' : null)
+								input(type='checkbox', name='corn', value='true', checked=user.corn ? 'true' : null disabled)
 						.form-group.row
-							label.col-15.control-label lettuce
+							label.col-15.control-label Lettuce
 							.col-85
-								input(type='checkbox', name='lettuce', value='true', checked=user.lettuce ? 'true' : null)
+								input(type='checkbox', name='lettuce', value='true', checked=user.lettuce ? 'true' : null disabled)
 						.form-group.row
-							label.col-15.control-label sourcream
+							label.col-15.control-label Sour Cream
 							.col-85
-								input(type='checkbox', name='sourcream', value='true', checked=user.sourcream ? 'true' : null)
+								input(type='checkbox', name='sourcream', value='true', checked=user.sourcream ? 'true' : null disabled)
 						.form-group.row
-							label.col-15.control-label guacamole
+							label.col-15.control-label Guacamole
 							.col-85
-								input(type='checkbox', name='guacamole', value='true', checked=user.guacamole ? 'true' : null)
+								input(type='checkbox', name='guacamole', value='true', checked=user.guacamole ? 'true' : null disabled)
 						.form-group.row
-							label.col-15.control-label chips
+							label.col-15.control-label Chips
 							.col-85
-								input(type='checkbox', name='chips', value='true', checked=user.chips ? 'true' : null)
+								input(type='checkbox', name='chips', value='true', checked=user.chips ? 'true' : null disabled)
 						.form-group.row
 							label.col-15.control-label Notes
 							.col-85
-								textarea(name='notes', rows=5).form-control=user.notes.md
+								textarea(name='notes', rows=5 disabled).form-control=user.notes.md
 						.form-group.row
 							.col-85.col-sm-offset-2
 								button(type='submit', data-loading-text="Saving...").btn.btn-primary Save profile

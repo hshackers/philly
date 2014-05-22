@@ -9,9 +9,9 @@ block content
 
 	header.section.welcome.page-intro
 		.container
-			a(href='http://facebook.com/groups/PennAppsHS/'): p.lead This is High School Hackers.
+			p.lead: a(href='http://facebook.com/groups/PennAppsHS/') This is High School Hackers.
 			h1 We build, create, and innovate.
-			a(href='/meetups'): p.lead Meetups are held on the 2nd Saturday of each month.
+			p.lead: a(href='/meetups') Meetups are held on the 2nd Saturday of each month.
 	//- Hero
 	if nextMeetup
 		- lastMeetup = false;
@@ -37,6 +37,13 @@ block content
 							.col-66
 								if nextMeetup.description
 									p!= nextMeetup.description
+								if nextMeetup.schedule
+									h2 Schedule
+									p!= nextMeetup.schedule
+								if nextMeetup.sponsors
+									h2 Sponsors
+									p This meetup wouldn't be possible without these awesome sponsors:
+									p!= nextMeetup.sponsors
 								if nextMeetup.talks.length
 									.meetup-talks
 										span.meetup-talks__icon.entypo.entypo-large.entypo-comment
@@ -53,6 +60,7 @@ block content
 																	| , 
 																= user.name.full + ' '
 																if user.twitter
+																	i.icon-twitter 
 																	a(href='http://twitter.com/' + user.twitter.replace('@', ''), target='_blank' data-size="large")= user.twitter + ' '
 							.col-33
 								dl.dl-horizontal.home-meetup__details-list
@@ -68,9 +76,13 @@ block content
 										.sr-only Place
 										span.entypo.entypo-fixed-width.entypo-location
 									dd=nextMeetup.place
+									dt
+										.sr-only Place
+										span.entypo-fixed-width.icon-facebook
+									dd: a(href='nextMeetup.place') Facebook Event Page
 								if !lastMeetup
 									.register-btn
-									a(href='/attend', disabled=!nextMeetup.rsvpsAvailable).btn.btn-lg.btn-block.btn-register= nextMeetup.rsvpsAvailable ? 'Register' : 'No Spots Left!'
+									a(href='/attend', disabled=!nextMeetup.rsvpsAvailable).btn.btn-lg.btn-block.btn-register= nextMeetup.rsvpsAvailable ? 'RSVP' : 'No Spots Left!'
 								hr.line-dashed
 								p: a(href='/meetups').text-muted All our meetups &rarr;
 
@@ -80,7 +92,38 @@ block content
 				a(href='https://maps.google.com/?daddr=' + nextMeetup.place, target='_blank').directions-button
 					i.icon-point 
 					|  Get Directions
-		
+			if nextMeetup.coordinates
+				script coord = #{nextMeetup.coordinates}
+				script.
+					var map = L.mapbox.map('map', '#{nextMeetup.mapbox}')
+							.setView([#{nextMeetup.coordinates}], 15);
+							L.marker([#{nextMeetup.coordinates}]).addTo(map);
+							/* L.mapbox.featureLayer({
+									// this feature is in the GeoJSON format: see geojson.org
+									// for the full specification
+									type: 'Feature',
+									geometry: {
+											type: 'Point',
+											// coordinates here are in longitude, latitude order because
+											// x, y is the standard for GeoJSON and many formats
+											coordinates: [#{nextMeetup.coordinates}]
+									},
+									properties: {
+											title: '#{nextMeetup.place}',
+											description: ' ',
+											// one can customize markers by adding simplestyle properties
+											// http://mapbox.com/developers/simplestyle/
+											'marker-size': 'large',
+											'marker-color': '#f0a'
+									}
+							}).addTo(map); */
+							map.scrollWheelZoom.disable();
+			else
+				script.
+					var map = L.mapbox.map('map', 'hshackers1.2f6tuik9')
+							.setView([2.1252,24.1440], 15)
+							}).addTo(map);
+							map.scrollWheelZoom.disable();
 
 	//- About
 	section.section.home-about: .container

@@ -12,9 +12,14 @@ Meetup.add({
 	name: { type: String, required: true, initial: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	date: { type: Types.Date, required: true, initial: true, index: true },
-	time: { type: String, required: true, initial: true, width: 'short', default: '6pm - 9pm', note: 'e.g. 6pm - 9pm' },
-	place: { type: String, required: true, initial: true, width: 'medium', default: 'Level 6, 341 George St (Atlassian) – Enter via the side door in Wynyard Street', note: 'usually Level 6, 341 George St (Atlassian) – Enter via the side door in Wynyard Street' },
+	time: { type: String, required: true, initial: true, width: 'short', default: '10am - 6pm', note: 'e.g. 10am - 6pm' },
+	place: { type: String, required: true, initial: true, width: 'medium', default: 'Devnuts 908 N 3rd St', note: 'Something like Level 6, 341 George St (Atlassian) – Enter via the side door in Wynyard Street' },
+	coordinates: { type: String, width: 'medium' },
+	mapbox: { type: Types.Url, width: 'medium', default: 'hshackers1.2f6tuik9', note: 'For a map of Philly, use hshackers1.2f6tuik9' },
+	facebookURL: { type: Types.Url, width: 'medium' },
 	description: { type: Types.Html, wysiwyg: true },
+	schedule: { type: Types.Html, wysiwyg: true },
+	sponsors: { type: Types.Html, wysiwyg: true },
 	maxRSVPs: { type: Number, default: 100 },
 	totalRSVPs: { type: Number, noedit: true }
 });
