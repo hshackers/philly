@@ -1,7 +1,7 @@
 extends ../../layouts/default
 
 block intro
-	.page-intro: .container
+	.page-intro.page-intro-members: .container
 		h1 Mentors
 		p The mentors who are part of HS Hackers. Should you be here? Join us!
 		.buttons
@@ -29,6 +29,7 @@ block content
 							td
 								div= member.name.full
 								if member.twitter
+									i.icon-twitter 
 									a(href='https://twitter.com/' + member.twitter.replace('@', ''), target='_blank').text-small= member.twitter
 							td!= member.mentoring.free ? '<span class="entypo entypo-check"></span>' : null
 							td!= member.mentoring.paid ? '<span class="entypo entypo-check"></span>' : null
