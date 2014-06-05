@@ -9,12 +9,13 @@
   justify-content: center;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  &:before, &:after {
-    content: ' ';
-    display: block;
-    clear: both;
-    visibility: hidden;
-  }
+}
+
+.row:before, .row:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  visibility: hidden;
 }
 
 [class^="col"] {
