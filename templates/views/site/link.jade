@@ -34,7 +34,27 @@ block content
 					.container: .row: .col-85.col-sm-offset-1.col-md-8.col-md-offset-2
 						.xs-right: a(href='/links').text-muted &larr; Back to Links
 
-				.comments: .container
+				section.comments: .container
+					a.dsq-brlink(href='http://disqus.com') Loading comments...
+						noscript Please enable javascript!
+					if disqus_shortname
+						script.
+							var disqus_shortname = '#{disqus_shortname}';
+							(function() {
+									var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+									dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+									(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+							})();
+					else
+						script.
+							var disqus_shortname = 'hshackers';
+							(function() {
+									var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+									dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+									(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+							})();
+
+				//- section.comments: .container
 					h4=link.comments.length == 0 ? 'Be the first to reply' : plural(link.comments.length, '* comment', '* comments')
 					.comment.mt-1
 						for comment in link.comments

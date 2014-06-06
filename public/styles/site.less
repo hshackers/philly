@@ -118,7 +118,7 @@ a {
 }
 
 h1, h2, h3 {
-  font-family: @dosis;
+  font-family: @montserrat;
   text-align: inherit;
   margin: 0px;
   display: block;
@@ -436,6 +436,20 @@ header {
     padding-top: 100px;
     &.welcome {
         background: url(/images/pennapps-crop.jpg);
+        padding-bottom: 150px;
+        h1 {
+            margin-left: 90px;
+        }
+        h1::first-letter, h1:first-letter {
+            color: black;
+            background: white;
+            padding: 6px 20px;
+            margin-left: -90px;
+            border-radius: 20px;
+        }
+    }
+    &.lead {
+        font-size: 24px;
     }
     // Fancy h1
     h1 {
@@ -449,6 +463,7 @@ header {
         border-bottom: 1px solid;
         transition: text-shadow 0.15s ease;
         pointer: cursor;
+        width: auto;
     }
     h1:hover {
         text-shadow: 0 1px 0 #C9CFCE, 0 2px 0 #BCC2C2, 0 3px 0 #AFB6B6, 0 4px 0 #A4ADAC; // 0 5px 0 #9FA8A7, 0 6px 0 #99A3A2; // 0 7px 0 #97A1A0, 0 8px 0 #949E9D, 0 0 5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.3);
@@ -478,6 +493,46 @@ header {
     }
     .container {
     }
+    #skip {
+        position: absolute;
+        bottom: 0px;
+        left: 46%;
+        margin-left: -36px;
+        width: 72px;
+        margin: auto;
+        padding: 6px;
+        padding-bottom: 26px;
+        -webkit-transition: all .25s ease-in-out;
+        transition: all .25s ease-in-out;
+        border-radius: 0px;
+        &:hover {
+            padding-bottom: 40px;
+            background: @accent;
+        }
+    }
+    .register-btn {
+        margin-top: 40px;
+        a {
+            background-color: #d55500;
+            border-color: #d55500;
+            border-bottom-color: #b54800;
+            border-bottom-width: 2px;
+            color: white;
+            padding: 15px 15px;
+            font-weight: bold;
+            position: relative;
+            margin: 0 10px;  
+            &:hover {
+                background: lighten(#d55500, 10%);
+            }
+        }
+        a:last-child {
+            background: #3b5998;
+            &:hover {
+                background: lighten(#3b5998, 10%);
+            }
+        }
+    }
 }
 header.light {
     background-color: white;
@@ -501,6 +556,28 @@ header.light:before {
 }
 header:hover:before {
     opacity: 0.7;
+}
+
+// Talks
+#details {
+    .meetup-talks {
+        text-align: left;
+        background: white;
+        padding: 10px;
+        border-top: 0px;
+        max-width: 570px;
+        margin: auto;
+        margin-top: 20px;
+        h3 {
+            border-bottom: 4px solid rgba(0, 0, 0, 0.25);
+            padding-bottom: 10px;
+            margin-bottom: 10px; 
+            color: black;
+            i {
+                float: right;
+            }
+        }
+    }
 }
 
 // Login
@@ -738,10 +815,33 @@ table {
     border-bottom: 0;
 }
 
-// Old Event Page
-#schedule, #rsvp {
-    text-align: center;
+// Links
+article {
+    .col-10 {
+        h3 {
+            font-size: 70px;
+            text-align: right;
+        }
+    }
 }
+
+// Old Event Page
+#details, #schedule, #rsvp {
+    text-align: center;
+    font-size: 22px;
+    p {
+        max-width: 570px;
+        margin: auto;
+    }
+}
+
+#schedule {
+    background: url(/images/stripe.png) @accent!important;
+    background-repeat: repeat-x!important;
+    -webkit-background-size: 10px 20px!important;
+    background-size: 10px 20px!important;
+}
+
 .events {
     position: relative;
     margin: 60px auto;
@@ -929,7 +1029,7 @@ table {
         opacity: 1;
     }
 }
-#location {
+/* #location {
     a {
         padding: 6px 12px;
         display: inline-block;
@@ -947,6 +1047,18 @@ table {
     a:hover {
         box-shadow: 0 0 12px @accent;
     }
+} */
+
+// Schedule
+#details {
+    background: @accent;
+    color: white;
+    margin-top: -20px;
+}
+
+#schedule {
+    background: @accent;
+    color: white;
 }
 
 // Map
@@ -987,7 +1099,7 @@ div.map-legend.wax-legend {
     padding: 2em 0;
     color: #363636;
     text-align: center;
-    background: url(../img/giftly.png);
+    background: url(/images/giftly.png);
     background-size: 150px;
 }
 #sponsors {
