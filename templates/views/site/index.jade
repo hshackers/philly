@@ -6,8 +6,7 @@ include ../../mixins/advertisement
 block content
 
 	//- Welcome
-
-	header.section.welcome.page-intro
+	//- header.section.welcome.page-intro
 		.container
 			p.lead: a(href='http://facebook.com/groups/PennAppsHS/') This is High School Hackers.
 			h1 We build, create, and innovate.
@@ -17,52 +16,85 @@ block content
 		- lastMeetup = false;
 	else
 		- nextMeetup = lastMeetup;
-	
 
-	.section.home-meetup
-		if !nextMeetup
+	if !nextMeetup
+		.section.home-meetup
 			.hero
 				.container
 					h1 Welcome<br>
 					h3 It looks like you've initialized a new database.
 					p.lead Head over to <a href='/keystone'>Keystone</a> and create an upcoming meetup, some members and blog posts to see the site work properly.
 					p.lead A default account has been created for you to sign in with: <strong>user@keystonejs.com</strong> and the password <strong>admin</strong>.
-		else
-			.home-meetup-wrapper
+	else
+		header.lead.welcome#header(style='background-image:url("http://i.imgur.com/Wwps2BR.jpg");')
+			.container
+					//- i.icon-tools.logo
+					br
+					a(href='https://www.facebook.com/groups/PennAppsHS/', target='_blank') Our next meetup:
+					br
+					h1= nextMeetup.name
+					br
+					a(href='#schedule')
+						i.icon-browser
+						.sr-only Date
+						span= nextMeetup._.date.format('ddd MMMM DD ')
+					a(href='#schedule')
+						i.icon-time
+						.sr-only Time
+						span= nextMeetup.time
+					a(href='#location')
+						i.icon-point
+						.sr-only Location
+						span= nextMeetup.place
+					if !lastMeetup
+						.register-btn
+							a(href='/attend?tier=1', disabled=!nextMeetup.rsvpsAvailable)= nextMeetup.rsvpsAvailable ? 'RSVP' : 'No Spots Left!'
+							a(href=nextMeetup.facebookURL, target='_blank', disabled=!nextMeetup.rsvpsAvailable)
+								i.icon-facebook  
+								|  Event Page
+			a#skip.down.accent-bg(href='#details', title='Skip to content')
+				svg#Layer_1(version='1.2', baseprofile='tiny', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', viewbox='0 0 400 200', xml:space='preserve')
+					g
+						path(d='M106.308,29.384c6.332,0,11.664,2.444,15.984,7.344c9.214,11.232,18.286,22.174,27.216,32.832l43.2,51.84c5.184-6.629,11.806-14.62,19.873-23.976c8.059-9.362,15.834-18.65,23.328-27.864c8.922-10.658,17.994-21.6,27.215-32.832c4.32-4.9,9.646-7.344,15.984-7.344c4.895,0,9.355,1.58,13.393,4.752c4.32,3.74,6.764,8.424,7.344,14.04c0.574,5.616-1.014,10.726-4.752,15.336l-86.4,103.68c-4.037,4.894-9.362,7.344-15.984,7.344c-6.628,0-11.954-2.45-15.984-7.344l-86.4-103.68c-3.747-4.61-5.333-9.72-4.752-15.336c0.574-5.616,3.024-10.3,7.344-14.04C96.945,30.964,101.407,29.384,106.308,29.384z')
+				svg#Layer_1(version='1.2', baseprofile='tiny', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', viewbox='0 0 400 200', xml:space='preserve')
+					g
+						path(d='M106.308,29.384c6.332,0,11.664,2.444,15.984,7.344c9.214,11.232,18.286,22.174,27.216,32.832l43.2,51.84c5.184-6.629,11.806-14.62,19.873-23.976c8.059-9.362,15.834-18.65,23.328-27.864c8.922-10.658,17.994-21.6,27.215-32.832c4.32-4.9,9.646-7.344,15.984-7.344c4.895,0,9.355,1.58,13.393,4.752c4.32,3.74,6.764,8.424,7.344,14.04c0.574,5.616-1.014,10.726-4.752,15.336l-86.4,103.68c-4.037,4.894-9.362,7.344-15.984,7.344c-6.628,0-11.954-2.45-15.984-7.344l-86.4-103.68c-3.747-4.61-5.333-9.72-4.752-15.336c0.574-5.616,3.024-10.3,7.344-14.04C96.945,30.964,101.407,29.384,106.308,29.384z')
+
+		.section.home-meetup#details
 				.container
-					h5= (lastMeetup) ? 'Our last meetup:' : 'Our next meetup:'
+					//- h5= (lastMeetup) ? 'Our last meetup:' : 'Our next meetup:'
 					div(data-ks-editable=editable(user, { list: 'Meetup', id: nextMeetup.id }))
-						h1= nextMeetup.name
-						.row
-							.col-66
-								if nextMeetup.description
-									p!= nextMeetup.description
-								if nextMeetup.schedule
-									h2 Schedule
-									p!= nextMeetup.schedule
-								if nextMeetup.sponsors
-									h2 Sponsors
-									p This meetup wouldn't be possible without these awesome sponsors:
-									p!= nextMeetup.sponsors
-								if nextMeetup.talks.length
-									.meetup-talks
-										span.meetup-talks__icon.entypo.entypo-large.entypo-comment
-										h4.meetup-talks__heading Talks at this meetup
-										ul.list-unstyled
-											each talk in nextMeetup.talks
-												li.talk
-													strong.talk__name #{talk.name} 
-													if talk.who.length
-														.talk__speaker
-															| by 
-															each user, i in talk.who
-																if i
-																	| , 
-																= user.name.full + ' '
-																if user.twitter
-																	i.icon-twitter 
-																	a(href='http://twitter.com/' + user.twitter.replace('@', ''), target='_blank' data-size="large")= user.twitter + ' '
-							.col-33
+						//- h1= nextMeetup.name
+						h2.text-center Details
+						if nextMeetup.description
+							p!= nextMeetup.description
+						//- if nextMeetup.description
+							p!= nextMeetup.description
+						//- if nextMeetup.schedule
+							h2 Schedule
+							p!= nextMeetup.schedule
+						//- if nextMeetup.sponsors
+							h2 Sponsors
+							p This meetup wouldn't be possible without these awesome sponsors:
+							p!= nextMeetup.sponsors
+						if nextMeetup.talks.length
+							.meetup-talks
+								h3.meetup-talks__heading Talks at this meetup <i class="icon-speak"></i>
+								ul.list-unstyled
+									each talk in nextMeetup.talks
+										li.talk
+											strong.talk__name #{talk.name} 
+											if talk.who.length
+												.talk__speaker
+													| by 
+													each user, i in talk.who
+														if i
+															| , 
+														= user.name.full + ' '
+														if user.twitter
+															i.icon-twitter 
+															a(href='http://twitter.com/' + user.twitter.replace('@', ''), target='_blank' data-size="large")= user.twitter + ' '
+							//- .col-33
 								dl.dl-horizontal.home-meetup__details-list
 									dt
 										.sr-only Date
@@ -86,44 +118,55 @@ block content
 								hr.line-dashed
 								p: a(href='/meetups').text-muted All our meetups &rarr;
 
-								//- +advertisement()
-			.home-meetup-map
-				#map.map
-				a(href='https://maps.google.com/?daddr=' + nextMeetup.place, target='_blank').directions-button
-					i.icon-point 
-					|  Get Directions
-			if nextMeetup.coordinates
-				script coord = #{nextMeetup.coordinates}
-				script.
-					var map = L.mapbox.map('map', '#{nextMeetup.mapbox}')
-							.setView([#{nextMeetup.coordinates}], 15);
-							L.marker([#{nextMeetup.coordinates}]).addTo(map);
-							/* L.mapbox.featureLayer({
-									// this feature is in the GeoJSON format: see geojson.org
-									// for the full specification
-									type: 'Feature',
-									geometry: {
-											type: 'Point',
-											// coordinates here are in longitude, latitude order because
-											// x, y is the standard for GeoJSON and many formats
-											coordinates: [#{nextMeetup.coordinates}]
-									},
-									properties: {
-											title: '#{nextMeetup.place}',
-											description: ' ',
-											// one can customize markers by adding simplestyle properties
-											// http://mapbox.com/developers/simplestyle/
-											'marker-size': 'large',
-											'marker-color': '#f0a'
-									}
-							}).addTo(map); */
-							map.scrollWheelZoom.disable();
-			else
-				script.
-					var map = L.mapbox.map('map', 'hshackers1.2f6tuik9')
-							.setView([2.1252,24.1440], 15)
-							}).addTo(map);
-							map.scrollWheelZoom.disable();
+									//- +advertisement()
+				if nextMeetup.schedule
+					section#schedule: .container
+						//- i.icon-time.logo
+						h2 Schedule
+						p!= nextMeetup.schedule
+				if nextMeetup.sponsors
+					section#sponsors: .container
+						h2 Sponsors
+						p This meetup wouldn't be possible without these awesome sponsors:
+						p!= nextMeetup.sponsors
+				#location
+				.home-meetup-map
+					#map.map
+					a(href='https://maps.google.com/?daddr=' + nextMeetup.place, target='_blank').directions-button
+						i.icon-point 
+						|  Get Directions
+				if nextMeetup.coordinates
+					script coord = #{nextMeetup.coordinates}
+					script.
+						var map = L.mapbox.map('map', '#{nextMeetup.mapbox}')
+								.setView([#{nextMeetup.coordinates}], 15);
+								L.marker([#{nextMeetup.coordinates}]).addTo(map);
+								/* L.mapbox.featureLayer({
+										// this feature is in the GeoJSON format: see geojson.org
+										// for the full specification
+										type: 'Feature',
+										geometry: {
+												type: 'Point',
+												// coordinates here are in longitude, latitude order because
+												// x, y is the standard for GeoJSON and many formats
+												coordinates: [#{nextMeetup.coordinates}]
+										},
+										properties: {
+												title: '#{nextMeetup.place}',
+												description: ' ',
+												// one can customize markers by adding simplestyle properties
+												// http://mapbox.com/developers/simplestyle/
+												'marker-size': 'large',
+												'marker-color': '#f0a'
+										}
+								}).addTo(map); */
+								map.scrollWheelZoom.disable();
+				else
+					script.
+						var map = L.mapbox.map('map', 'hshackers1.2f6tuik9')
+								.setView([2.1252,24.1440], 15)
+								}).addTo(map);
+								map.scrollWheelZoom.disable();
 
 	//- About
 	section.section.home-about: .container
