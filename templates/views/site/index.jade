@@ -27,7 +27,7 @@ block content
 					p.lead A default account has been created for you to sign in with: <strong>user@keystonejs.com</strong> and the password <strong>admin</strong>.
 	else
 		header.lead.welcome#header(style='background-image:url("http://i.imgur.com/Wwps2BR.jpg");')
-			.container
+			.c
 					//- i.icon-tools.logo
 					br
 					a(href='https://www.facebook.com/groups/PennAppsHS/', target='_blank') Our next meetup:
@@ -129,7 +129,7 @@ block content
 						h2 Sponsors
 						p This meetup wouldn't be possible without these awesome sponsors:
 						p!= nextMeetup.sponsors
-				#location
+				//- #location
 				.home-meetup-map
 					#map.map
 					a(href='https://maps.google.com/?daddr=' + nextMeetup.place, target='_blank').directions-button
