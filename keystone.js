@@ -65,7 +65,7 @@ keystone.set('locals', {
 });
 
 keystone.set('email locals', {
-	keystoneURL: 'http://philly.hshackers.org/keystone',
+	keystoneURL: 'http://hshackers.org/keystone',
 	logo: '/images/logo_email.jpg',
 	logo_width: 120,
 	logo_height: 112,
@@ -78,7 +78,7 @@ keystone.set('email locals', {
 keystone.set('email tests', {
 	'forgotten-password': {
 		name: 'User',
-		link: 'http://philly.hshackers.org/reset-password/key'
+		link: 'http://hshackers.org/reset-password/key'
 	}
 });
 
