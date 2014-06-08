@@ -35,15 +35,15 @@ block content
 					h1= nextMeetup.name
 					br
 					a(href='#schedule')
-						i.icon-browser 
+						i.icon-browser &nbsp;&nbsp;
 						.sr-only Date
 						span= nextMeetup._.date.format('ddd MMMM DD ')
 					a(href='#schedule')
-						i.icon-time 
+						i.icon-time &nbsp;&nbsp;
 						.sr-only Time
 						span= nextMeetup.time
 					a(href='#maps')
-						i.icon-point 
+						i.icon-point &nbsp;&nbsp;
 						.sr-only Location
 						span= nextMeetup.place
 					if !lastMeetup
