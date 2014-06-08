@@ -3154,6 +3154,9 @@ p:after {
   clear: both;
   content: '';
 }
+a {
+  color: #4a89dc;
+}
 .fancy-underline {
   display: inline-block;
   color: inherit;
@@ -3616,17 +3619,26 @@ fieldset[disabled] .home-links .home-links-anchor {
 .blog-post__image img {
   max-width: 175px!important;
 }
+h3.mt-0 {
+  margin: 20px 0 20px 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  line-height: 1.2em;
+}
 .section-profile-form {
   border-top: 57px solid #1f282d;
   background: #f7f3ea;
 }
 .section-profile-form h3 {
-  margin: 20px 0;
+  margin: 20px 0 20px 0;
   border-bottom: 2px solid rgba(0, 0, 0, 0.5);
   line-height: 1.2em;
 }
 .section-public-form {
   background: #f7f3ea;
+}
+.section-public-form .public-profile-toggle {
+  font-size: 120%;
+  font-weight: bold;
 }
 .section-public-form {
   -webkit-box-shadow: inset 0 -10px 0 0 rgba(0, 0, 0, 0.1);
@@ -3652,7 +3664,7 @@ header {
   -moz-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  padding: 60px 16.66667%;
+  padding: 60px 10px;
   width: 100%;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
@@ -3665,6 +3677,23 @@ header {
 }
 header.welcome {
   background: url(/images/pennapps-crop.jpg);
+  padding-bottom: 150px;
+}
+header.welcome h1 {
+  margin-left: 90px;
+}
+header.welcome h1::first-letter,
+header.welcome h1:first-letter {
+  color: black;
+  background: white;
+  padding: 6px 20px;
+  margin-left: -90px;
+  border-radius: 20px;
+  overflow: visible;
+  height: 1em;
+}
+header.lead {
+  font-size: 24px;
 }
 header h1 {
   display: inline-block;
@@ -3678,6 +3707,7 @@ header h1 {
   -webkit-transition: text-shadow 0.15s ease;
   transition: text-shadow 0.15s ease;
   pointer: cursor;
+  width: auto;
 }
 header h1:hover {
   text-shadow: 0 1px 0 #C9CFCE, 0 2px 0 #BCC2C2, 0 3px 0 #AFB6B6, 0 4px 0 #A4ADAC;
@@ -3705,6 +3735,46 @@ header a:not(.btn) i {
 }
 header i.logo {
   margin-top: -20px;
+}
+header #skip {
+  position: absolute;
+  bottom: 0px;
+  left: 46%;
+  margin-left: -36px;
+  width: 72px;
+  margin: auto;
+  padding: 6px;
+  padding-bottom: 26px;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  border-radius: 0px;
+}
+header #skip:hover {
+  padding-bottom: 40px;
+  background: #26c7df;
+}
+header .register-btn {
+  margin-top: 40px;
+}
+header .register-btn a {
+  background-color: #d55500;
+  border-color: #d55500;
+  border-bottom-color: #b54800;
+  border-bottom-width: 2px;
+  color: white;
+  padding: 15px 15px;
+  font-weight: bold;
+  position: relative;
+  margin: 0 10px;
+}
+header .register-btn a:hover {
+  background: #ff6b09;
+}
+header .register-btn a:last-child {
+  background: #3b5998;
+}
+header .register-btn a:last-child:hover {
+  background: #4c70ba;
 }
 header.light {
   background-color: white;
@@ -3734,6 +3804,25 @@ header.light:before {
 }
 header:hover:before {
   opacity: 0.7;
+}
+#details .meetup-talks {
+  text-align: left;
+  background: white;
+  color: gray;
+  padding: 10px;
+  border-top: 0px;
+  max-width: 570px;
+  margin: auto;
+  margin-top: 20px;
+}
+#details .meetup-talks h3 {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.25);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  color: black;
+}
+#details .meetup-talks h3 i {
+  float: right;
 }
 #session-wrapper {
   background: #1f282d;
@@ -3872,10 +3961,8 @@ i.logo {
 .down {
   position: absolute;
   bottom: 0px;
-  left: 45%;
-  left: -webkit-calc(14%);
-  left: calc(14%);
-  margin-left: -36px;
+  left: 50%!important;
+  margin-left: -36px !important;
   width: 72px;
   margin: auto;
   padding: 6px;
@@ -3944,7 +4031,8 @@ article.post .container {
   padding-bottom: 40px;
   padding-top: 40px;
 }
-article.post p {
+article.post p,
+#disqus_thread {
   max-width: 720px;
   margin: auto;
   margin-bottom: 1em;
@@ -4097,9 +4185,38 @@ article .col-10 h3 {
   font-size: 70px;
   text-align: right;
 }
+.links-list a:active {
+  color: #e9573f;
+}
+.links-list a:visited {
+  color: #967adc;
+}
+#details,
 #schedule,
+#location,
 #rsvp {
   text-align: center;
+  font-size: 22px;
+  padding: 1em 0!important;
+}
+#details p,
+#schedule p,
+#location p,
+#rsvp p {
+  margin: 1em auto;
+}
+#details h2,
+#schedule h2,
+#location h2,
+#rsvp h2 {
+  font-weight: bold;
+  margin-top: -10px;
+}
+#schedule {
+  background: url(/images/stripe.png) #26c7df !important;
+  background-repeat: repeat-x !important;
+  -webkit-background-size: 10px 20px!important;
+  background-size: 10px 20px!important;
 }
 .events {
   position: relative;
@@ -4185,14 +4302,16 @@ article .col-10 h3 {
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
-.event i {
+.event i,
+.event em {
   float: left;
   font-size: 36px;
   margin-right: 10px;
-  line-height: 28px;
+  line-height: 18px;
 }
 .event p {
-  margin: 12px 0;
+  margin: 6px 0!important;
+  font-size: 18px;
 }
 .event .time {
   float: right;
@@ -4316,6 +4435,7 @@ article .col-10 h3 {
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
   border-radius: 8px;
+  font-size: 20px;
 }
 #location a i {
   font-size: 120%;
@@ -4325,6 +4445,19 @@ article .col-10 h3 {
 #location a:hover {
   -webkit-box-shadow: 0 0 12px #26c7df;
   box-shadow: 0 0 12px #26c7df;
+}
+#details,
+#schedule {
+  background: #26c7df;
+  color: white;
+  margin-top: -20px;
+  padding: 2em 0;
+}
+#details h1,
+#schedule h1,
+#details h2,
+#schedule h2 {
+  color: white;
 }
 #map {
   position: relative;
@@ -4364,7 +4497,7 @@ div.map-legend.wax-legend {
   padding: 2em 0;
   color: #363636;
   text-align: center;
-  background: url(../img/giftly.png);
+  background: url(/images/giftly.png);
   -webkit-background-size: 150px;
   background-size: 150px;
 }
