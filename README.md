@@ -1,4 +1,4 @@
-philly.hshackers.org
+hshackers.org
 =========
 
 ## The HS Hackers Website.

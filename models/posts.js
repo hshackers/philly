@@ -63,7 +63,7 @@ Post.schema.methods.notifyAdmins = function(callback) {
 				admin: admin.name.first || admin.name.full,
 				author: results.author ? results.author.name.full : 'Somebody',
 				title: post.title,
-				keystoneURL: 'http://philly.hshackers.org/keystone/post/' + post.id,
+				keystoneURL: 'http://hshackers.org/keystone/post/' + post.id,
 				subject: 'New Post to HS Hackers'
 			}, {
 				to: admin,

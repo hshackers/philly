@@ -131,7 +131,7 @@ User.schema.methods.resetPassword = function(callback) {
 		
 		new keystone.Email('forgotten-password').send({
 			name: user.name.first || user.name.full,
-			link: 'http://philly.hshackers.org/reset-password/' + user.resetPasswordKey,
+			link: 'http://hshackers.org/reset-password/' + user.resetPasswordKey,
 			subject: 'Reset your HS Hackers Password'
 		}, {
 			to: user,
