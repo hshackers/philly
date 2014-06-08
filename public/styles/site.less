@@ -73,6 +73,10 @@ p:before, p:after {
   content: '';
 }
 
+a {
+    color: @blue;
+}
+
 .fancy-underline {
     display: inline-block;
     color: inherit;
@@ -396,18 +400,30 @@ p.lead {
     max-width: 175px!important;
 }
 
+// Sort links
+
 // Edit Profile
+h3.mt-0 {
+    margin: 20px 0 20px 0;
+    border-bottom: 2px solid rgba(0,0,0,.5);
+    line-height: 1.2em;
+}
+
 .section-profile-form {
     border-top: 57px solid @spacegray;
     background: @honey;
     h3 {
-        margin: 20px 0;
+        margin: 20px 0 20px 0;
         border-bottom: 2px solid rgba(0,0,0,.5);
         line-height: 1.2em;
     }
 }
 .section-public-form {
     background: @honey;
+    .public-profile-toggle {
+        font-size: 120%;
+        font-weight: bold;
+    }
 }
 .section-public-form {
     box-shadow: inset 0 -10px 0 0 rgba(0,0,0,.1);
@@ -424,7 +440,7 @@ header {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 60px 16.66667%;
+    padding: 60px 10px;
     position: relative;
     width: 100%;
     transition: all .25s ease-in-out;
@@ -446,6 +462,8 @@ header {
             padding: 6px 20px;
             margin-left: -90px;
             border-radius: 20px;
+            overflow: visible;
+            height: 1em;
         }
     }
     &.lead {
@@ -642,9 +660,8 @@ i.logo {
 .down {
     position: absolute;
     bottom: 0px;
-    left: 45%;
-    left: calc(50% - 36px);
-    margin-left: -36px;
+    left: 50%!important;
+    margin-left: -36px!important;
     width: 72px;
     margin: auto;
     padding: 6px;
@@ -707,7 +724,7 @@ section {
 article.post {
     .section;
 }
-article.post p {
+article.post p, #disqus_thread {
     max-width: 720px;
     margin: auto;
     margin-bottom: 1em;
@@ -826,13 +843,26 @@ article {
     }
 }
 
+.links-list a:active {
+    color: @red;
+}
+
+.links-list a:visited {
+    color: @purple;
+}
+
 // Old Event Page
-#details, #schedule, #rsvp {
+#details, #schedule, #location, #rsvp {
     text-align: center;
     font-size: 22px;
+    padding: 1em 0!important;
     p {
         // max-width: 570px;
-        margin: auto;
+        margin: 1em auto;
+    }
+    h2 {
+        font-weight: bold;
+        margin-top: -10px;
     }
 }
 
@@ -1030,7 +1060,7 @@ article {
         opacity: 1;
     }
 }
-/* #location {
+#location {
     a {
         padding: 6px 12px;
         display: inline-block;
@@ -1039,6 +1069,7 @@ article {
         color: white;
         transition: all 300ms ease;
         border-radius: 8px;
+        font-size: 20px;    
         i {
             font-size: 120%;
             vertical-align: top;
@@ -1048,18 +1079,17 @@ article {
     a:hover {
         box-shadow: 0 0 12px @accent;
     }
-} */
+}
 
 // Schedule
-#details {
+#details, #schedule {
     background: @accent;
     color: white;
     margin-top: -20px;
-}
-
-#schedule {
-    background: @accent;
-    color: white;
+    padding: 2em 0;
+    h1, h2 {
+        color: white;
+    }
 }
 
 // Map

@@ -13,10 +13,11 @@ mixin meetup(meetup, mode)
 				if meetup.place
 					|  at #{meetup.place}
 			h2.mt-0= meetup.name
-			if meetup.facebook
-				p: a(href='nextMeetup.place')
+			if meetup.facebookURL
+				p: a(href='nextMeetup.facebookURL')
 					i.icon-facebook
 					| Facebook Event Page
+			if meetup.description
 				p!= meetup.description
 			if meetup.schedule
 				h2 Schedule

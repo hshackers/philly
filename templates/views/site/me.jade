@@ -7,7 +7,7 @@ block content
 				input(type='hidden', name='action', value='profile.top')
 				if user && user.canAccessKeystone
 					a(href='/keystone', target='_blank').btn.btn-xs.btn-success.pull-right Open the Keystone Admin UI
-				h4.profile-form__heading Your Profile
+				h4.profile-form__heading &nbsp;&nbsp;&nbsp;Your Profile
 				.form-group
 					.row
 						.col-50: input(type='text', name='name.first' value=user.name.first).input.input-xl.input-faded
@@ -48,6 +48,7 @@ block content
 		.container
 			.row
 				.col-66.col-md-7
+					h3.mt-0 Upcoming Meetups (Click "Attending" to RSVP)
 					if meetups.next
 						#next-meetup(data-id=meetups.next.id)
 							.meetup-calendar.calendar
@@ -80,9 +81,10 @@ block content
 						p Follow us on Twitter to find out when we anounce the next meetup
 						p: a(href="https://twitter.com/hshackersphilly", class="twitter-follow-button", data-show-count="true") Follow @hshackersphilly
 
-				if rsvps.history.length
-					.col-33.col-md-push-1
-						h4.mt-0 You've been to...
+				.col-33.col-md-push-1
+					h3.mt-0 You've been to... 
+					if rsvps.history.length
+						//- h4.mt-0 You've been to...
 						ul
 							each attendedMU in rsvps.history
 								li=attendedMU.meetup.name
@@ -91,13 +93,12 @@ block content
 	//- PUBLIC INFO FORM
 	.section.section-public-form
 		.container
-			h2.mt-0 Your profile
 			.row
 				.col-66.col-md-7
 					form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
 						input(type='hidden', name='action', value='profile.bottom')
-						h3.mt-0 Public info
-						.form-group.row
+						h3.mt-0 Public Info
+						.form-group.row.public-profile-toggle
 							.col-85.col-sm-offset-2
 								label.checkbox
 									input(type='checkbox', name='isPublic', value='true', checked=user.isPublic ? 'true' : null)
@@ -118,6 +119,8 @@ block content
 										.col-75: input(type='file', name='photo_upload')
 								else
 									input(type='file', name='photo_upload')
+						h3.mt-0 Mentorship
+
 						.form-group.row
 							label.col-15.control-label Mentoring
 							.col-85
@@ -164,8 +167,10 @@ block content
 	//- CHIPOTLE
 	.section.section-chipotle-form
 		.container
-			h2.mt-0 Chipotle (Coming Soon)
+			h3.mt-0 Chipotle 
 			p We will provide chipotle at a majority of our meetups. Help make our lives easier by indicating your prefrences below.
+			p Ordering will open during meetups!
+			br
 			.row
 				.col-66.col-md-7
 					form(method='post', enctype='multipart/form-data', autocomplete='off', novalidate).form-horizontal
