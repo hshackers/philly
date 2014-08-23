@@ -28,5 +28,5 @@ PostCategory.relationship({ ref: 'Post', refPath: 'categories', path: 'posts' })
  * ============
  */
 
-PostCategory.addPattern('standard meta');
+PostCategory.track;
 PostCategory.register();

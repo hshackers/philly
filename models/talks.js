@@ -26,6 +26,6 @@ Talk.add({
  * ============
  */
 
-Talk.addPattern('standard meta');
+Talk.track;
 Talk.defaultColumns = 'name, meetup|20%, who|20%';
 Talk.register();

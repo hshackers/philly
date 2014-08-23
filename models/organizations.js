@@ -33,6 +33,6 @@ Organization.relationship({ ref: 'User', refPath: 'organisation', path: 'members
  * ============
  */
 
-Organization.addPattern('standard meta');
+Organization.track;
 Organization.defaultColumns = 'name, website, isHiring';
 Organization.register();
