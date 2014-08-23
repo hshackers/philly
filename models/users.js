@@ -151,6 +151,6 @@ User.schema.methods.resetPassword = function(callback) {
  * ============
 */
 
-User.addPattern('standard meta');
+User.track;
 User.defaultColumns = 'name, email, twitter, isAdmin';
 User.register();

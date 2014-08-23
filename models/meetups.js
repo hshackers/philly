@@ -78,6 +78,6 @@ Meetup.schema.methods.refreshRSVPs = function(callback) {
  * ============
  */
 
-Meetup.addPattern('standard meta');
+Meetup.track;
 Meetup.defaultColumns = 'name, state|20%, date|20%';
 Meetup.register();

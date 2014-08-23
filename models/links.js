@@ -35,6 +35,6 @@ Link.relationship({ ref: 'LinkComment', refPath: 'link', path: 'comments' });
  * ============
  */
 
-Link.addPattern('standard meta');
+Link.track;
 Link.defaultColumns = 'label, href, author|20%, state|20%';
 Link.register();
