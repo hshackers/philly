@@ -28,5 +28,5 @@ LinkTag.relationship({ ref: 'Link', refPath: 'tags', path: 'links' });
  * ============
  */
 
-LinkTag.track;
+LinkTag.addPattern('standard meta');
 LinkTag.register();

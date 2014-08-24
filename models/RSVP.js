@@ -23,7 +23,9 @@ RSVP.add({
  */
 
 RSVP.schema.pre('save', function(next) {
-	this.changedAt = Date.now();
+	if (!this.isModified('changedAt')) {
+		this.changedAt = Date.now();
+	}
 	next();
 });
 
@@ -32,6 +34,11 @@ RSVP.schema.post('save', function() {
 		if (meetup) meetup.refreshRSVPs();
 	});
 });
+RSVP.schema.post('remove', function() {
+	keystone.list('Meetup').model.findById(this.meetup, function(err, meetup) {
+		if (meetup) meetup.refreshRSVPs();
+	});
+})
 
 
 /**

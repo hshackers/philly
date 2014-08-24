@@ -63,13 +63,13 @@ Post.schema.methods.notifyAdmins = function(callback) {
 				admin: admin.name.first || admin.name.full,
 				author: results.author ? results.author.name.full : 'Somebody',
 				title: post.title,
-				keystoneURL: 'http://hshackers.org/keystone/post/' + post.id,
+				keystoneURL: 'http://www.hshackers.org/keystone/post/' + post.id,
 				subject: 'New Post to HS Hackers'
 			}, {
 				to: admin,
 				from: {
 					name: 'HS Hackers',
-					email: 'contact@HS Hackers.com'
+					email: 'contact@hshackers.org'
 				}
 			}, done);
 			
@@ -96,7 +96,7 @@ Post.schema.methods.notifyAdmins = function(callback) {
  * ============
  */
 
-Post.track;
+Post.addPattern('standard meta');
 Post.defaultSort = '-publishedDate';
 Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
 Post.register();
