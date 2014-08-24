@@ -1,6 +1,11 @@
 // Load .env for development environments
 require('dotenv').load();
 
+// Initialise New Relic if an app name and license key exists
+if (process.env.NEW_RELIC_APP_NAME && process.env.NEW_RELIC_LICENSE_KEY) {
+	require('newrelic');
+}
+
 /**
  * Application Initialisation
  */
@@ -10,7 +15,7 @@ var keystone = require('keystone'),
 
 keystone.init({
 
-	'name': 'HS Hackers',
+	'name': 'HS Hackers Philly',
 	'brand': 'HS Hackers',
 	'back': '/me',
 
@@ -20,6 +25,7 @@ keystone.init({
 
 	'views': 'templates/views',
 	'view engine': 'jade',
+	'view cache': false,
 	
 	'emails': 'templates/emails',
 
@@ -27,9 +33,10 @@ keystone.init({
 	'mongo': process.env.MONGO_URI || 'mongodb://localhost/' + pkg.name,
 
 	'session': true,
+	'session store': 'mongo',
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': process.env.COOKIE_SECRET || 'yOB~u{rQK`d17JFGn!@&pB9N%b_{rZa7+oVD+xVr&-u^SY^>u9Jy/-3eM+C37[4J',
+	'cookie secret': process.env.COOKIE_SECRET || 'hshackers',
 	
 	// the default mandrill api key is a *test* key. it will 'work', but not send emails.
 	'mandrill api key': process.env.MANDRILL_KEY || 'v17RkIoARDkqTqPSbvrmkw',
@@ -41,11 +48,13 @@ keystone.init({
 	'ga domain': process.env.GA_DOMAIN,
 	
 	'chartbeat property': process.env.CHARTBEAT_PROPERTY,
-	'chartbeat domain': process.env.CHARTBEAT_DOMAIN
+	'chartbeat domain': process.env.CHARTBEAT_DOMAIN,
+
+	'basedir': __dirname
 	
 });
 
-require('./models');
+keystone.import('models');
 
 keystone.set('routes', require('./routes'));
 
@@ -65,25 +74,16 @@ keystone.set('locals', {
 });
 
 keystone.set('email locals', {
-	keystoneURL: 'http://hshackers.org/keystone',
-	logo: '/images/logo_email.jpg',
-	logo_width: 120,
-	logo_height: 112,
-	theme: {
-		email_bg: '#f9f9f9',
-		link_color: '#2697de'
-	}
-});
-
-keystone.set('email tests', {
-	'forgotten-password': {
-		name: 'User',
-		link: 'http://hshackers.org/reset-password/key'
-	}
+	utils: keystone.utils,
+	host: (function() {
+		if (keystone.get('env') === 'staging') return 'http://hshackers-beta.herokuapp.com';
+		if (keystone.get('env') === 'production') return 'http://hshackers.org';
+		return (keystone.get('host') || 'http://localhost:') + (keystone.get('port') || '3000');
+	})()
 });
 
 keystone.set('nav', {
-	'meetups': ['meetups', 'talks'],
+	'meetups': ['meetups', 'talks', 'rsvps'],
 	'members': ['users', 'organizations'],
 	'posts': ['posts', 'post-categories', 'post-comments'],
 	'links': ['links', 'link-tags', 'link-comments']
