@@ -1,0 +1,11 @@
+extends ../../layouts/default
+
+include ../../mixins/meetup
+
+block content
+	.container-sm
+		.page-intro.text-left
+			a(href='/meetups').btn.btn-default &larr; Back to all meetups
+		.page-content
+			+meetup(meetup)
+		style .site-body { background-image: url(#{meetup.cover}); }

@@ -1,6 +1,6 @@
 mixin flash-messages(messages)
 	if messages
-		#flash-messages: .container
+		.flash-messages
 			each message in messages.info
 				+flash-message(message, 'info')
 			each message in messages.success
@@ -22,4 +22,4 @@ mixin flash-message(message, type)
 					each item in message.list
 						li= item
 		else
-			= message
+			!= message

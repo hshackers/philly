@@ -4,45 +4,45 @@ include ../../mixins/organizer
 
 block intro
 	.page-intro: .container
-		h1 About
-		p We build, create, and innovate.
-		.buttons
-			if !user
-				a(href='/join').btn.btn-primary Join HS Hackers
-			a(href="https://twitter.com/hshackersphilly", class="twitter-follow-button", data-show-count="true" data-size="large") Follow @hshackersphilly
+		h1.page-title About
+		p.lead Every 2nd Saturday of the month you'll find us talking about what we're doing and what's happening around us in the world of technology and innovation. 
+		p.lead HS Hackers wouldn't be possible without our organizers:
 
 block content
-	.container
-		.alert This page is under construction.
-		h2 Organizers
-		p.lead Each month the HS Hackers team works to bring together great geniuses in a great venue.
-		p The Philadelphia meetup group is run by Victor Lourng.
-		hr.line-thick
-
-		h2 Press Contact
-		p hello at victorlourng dot com
-		//- .row.about-organizers
-			each org in organizers
-				.col-25
-					//- +organizer(org)
+	.page-content
+		.section.highlight: .container
+			//- h2 Organisers
+			//- p.lead Each month the HS Hackers team works to bring you great presenters in a great venue.
+			.row.about-organizers
+				each org in organizers
+					.col-sm-3
+						+organizer(org)
 			
 		
 		//- CODE
-		hr.line-thick
-		a(name='code')
-		h2 Code of Conduct
+		.section: .container-sm
+			h2 Code of Conduct
+			p Hackers are a heterogeneous group of people. Our diversity in gender, sexual orientation, physical or mental ability, age, socioeconomic status, ethnicity, physical appearance, race, religion, and so on, fuels our creativity and enables us to approach solving problems from a variety of angles. In that spirit, HS Hackers and the meetup organizers who compose its advisory board have come up with this simple Code of Conduct that will hold ourselves and the people who attend our events accountable to.
+			p While you’re at an event, do your best to respect the diversity of our community and be mindful of the fact that certain content and actions can make the people around you uncomfortable. If your project contains material that might cross that boundary, you should tell one of the event organizers about it before your present your project.
+			p If you see anything that makes you uncomfortable or that you believe is making other attendees uncomfortable, you should disclose that to the event organizers in a responsible manner. The event organizers will do their best to evaluate the situation and determine what the appropriate response (if any) should be.
 
-		p.lead Hackers are a heterogeneous group of people. Our diversity in gender, sexual orientation, physical or mental ability, age, socioeconomic status, ethnicity, physical appearance, race, religion, and so on, fuels our creativity and enables us to approach solving problems from a variety of angles. In that spirit, HS Hackers and the meetup organizers who compose its advisory board have come up with this simple Code of Conduct that will hold ourselves and the people who attend our events accountable to.
+			p Ultimately, the event organizers reserve the right to determine what content and actions are appropriate for their meetups and which projects are allowed to be presented there.
 
-		p While you’re at an event, do your best to respect the diversity of our community and be mindful of the fact that certain content and actions can make the people around you uncomfortable. If your project contains material that might cross that boundary, you should tell one of the event organizers about it before your present your project.
-
-		p If you see anything that makes you uncomfortable or that you believe is making other attendees uncomfortable, you should disclose that to the event organizers in a responsible manner. The event organizers will do their best to evaluate the situation and determine what the appropriate response (if any) should be.
-
-		p Ultimately, the event organizers reserve the right to determine what content and actions are appropriate for their meetups and which projects are allowed to be presented there.
-
-
-		p.muted Adopted from Major League Hacking. 
-		br
+			//-	h2 Code of Conduct
+				h5 We choose to share technology's good parts; and we choose to share our own.
+				p The Philadelphia tech community is full of wonderful people from a diverse range of backgrounds, and we want to ensure it remains a welcoming and safe environment to all who wish to be a part of it.
+				p Whenever we come together as a community, our shared spaces are opportunities to showcase the best of what we can be. We are there to support our peers - to build each other up, to accept each other for who they are, and to encourage each other to become the people they want to be.
+				p With that in mind, if you are present at any HS Hackers event, whether as an attendee, organizer, sponsor, or speaker, we take it as given that you agree to follow this code of conduct:
+				p The HS Hackers community is dedicated to providing harassment-free experiences at events and conferences for everyone regardless of who they are or what they believe. We do not tolerate harassment in any form.
+				p All communication should be appropriate for a professional audience including people of many different backgrounds.
+				p Be kind and respectful towards others. Remember that harassment and exclusionary jokes are not appropriate for events supported by HS Hackers.
+				p Anyone violating these rules at events may be asked to leave the event without a refund at the sole discretion of the organizers.
+				p If you or someone else is subject to harassment, or you have a concern, please contact the event organizers (who will introduce themselves at the beginning of the event).
+				p The HS Hackers community is a welcoming and friendly place – thank you for being a part of it.
+				p If you believe in building people, communities, and software, then you are a part of us.
+			hr.mv-3
+			h5 Thank you
+			p This Code of Conduct has learned and borrowed much from others - especially <a href='http://static.mlh.io/docs/mlh-code-of-conduct.pdf'>Major League Hacking</a> and <a href='https://gist.github.com/jcasimir/6992184'>Jeff Casimir</a>. Thank you to all who provided inspiration and feedback.
 
 block js
 	// twitter

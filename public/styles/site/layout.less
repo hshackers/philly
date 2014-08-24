@@ -1,57 +1,180 @@
-// BLOG
-// ------------------------------
-@post-image-width: 170px;
-.blog-post {
-	.clearfix();
-	text-align: center;
-	margin-bottom: 40px;
-	
+//
+// Layout
+// ==============================
+
+
+// Base
+
+html {
+	.square( 100% );
 }
-.blog-post__image {
-	margin-bottom: 20px;
-}
-.blog-post__content {
-	text-align: left;
-}
-.blog-post__heading {
-	margin-top: 0;
-	
-	a {
-		color: @headings-color;
-	}
-}
-.blog-post__author {
-	color: mix(@body-bg, @text-color, 50%);
-	font-weight: 200;
-	
-	a {
-		color: mix(@body-bg, @text-color, 50%);
-	}
+body {
+	height: 100%;
+	font-weight: @font-weight-base;
 }
 
+
+// Containers
+// ------------------------------
+.container-xs,
+.container-sm,
+.container-md {
+	.container-fixed();
+}
 @media (min-width: @screen-sm-min) {
-	.blog-post__image {
-		float: left;
-		width: @post-image-width;
+	.container-xs { width: 600px; }
+	.container-sm { width: @screen-sm-min - @grid-gutter-width; }
+	.container-md { max-width: @screen-md-min - @grid-gutter-width; }
+}
+
+
+// App alert
+// ------------------------------
+#app-alert {
+	padding: 8px 0;
+	position: relative;
+	overflow: hidden;
+	z-index: 9;
+	background-color: #F9F9F9;
+	display: none!important;
+	.box-shadow(0 1px 0 rgba(0,0,0,0.1));
+	.dismiss-alert {
+		position: absolute;
+		left: 20px;
+		top: 0;
+		line-height: 84px;
+		color: @gray-light;
+		font-size: 24px;
+		&:hover {
+			color: @gray;
+			text-decoration: none;
+		}
 	}
-	.blog-post__content {
-		margin-left: @post-image-width + 20;
-		&.link {
-			margin-left: 0;
+	.app-icon {
+		img {
+			display: block;
+			float: left;
+			width: 64px;
+			height: 64px;
+			margin-right: 15px;
+		}
+	}
+	.app-button {
+		line-height: 64px;
+		padding-right: 15px;
+		float: right;
+	}
+	h5 {
+		margin: 12px 0 5px;
+		font-size: 16px;
+	}
+	p {
+		font-size: 14px;
+	}
+
+	@media (max-width: @screen-sm-max) {
+		.row {
+			div + div {
+				margin-top: 0;
+			}
+		}
+		.app-icon {
+			padding-left: 40px;
+
+			img {
+				margin-right: 10px;
+			}
+		}
+
+		.dismiss-alert-xs {
+			left: 15px;
+			line-height: 64px;
+		}
+
+		h5 {
+		}
+
+		.app-link {
+			line-height: 64px;
+			text-transform: uppercase;
+			font-weight: 500;
 		}
 	}
 }
 
 
-// full post
-.full-post {
-	padding-bottom: 40px;
+// Body
+// ------------------------------
+.site-body {
+	.floor;
+	.floor-1;
+	padding-bottom: @page-padding;
+	padding-top: @page-padding;
+}
+
+
+
+// Footer
+// ------------------------------
+.site-footer {
+	background-color: darken(@body-bg, 3.5%);
+	color: @gray-light;
+	padding: 3em 0 0;
+	font-size: @font-size-base * 1.1;
+	position: relative;
+
+	.footer-heading {
+		color: @gray;
+	}
+	ul, ol {
+		.list-unstyled();
+	}
+	p {
+		margin-bottom: 5px;
+	}
+	a {
+		color: @gray;
+	}
+	
+}
+.footer-copyright {
+	margin-top: 2em;
+	padding: 2em @page-padding;
+	border-top: 1px solid fade(black, 10%);
+	text-align: center;
+}
+
+
+// Sticky footer (only on desktop)
+// ------------------------------
+@footerHeight: 320px;
+.site-wrapper.has-sticky-footer {
+	position: relative;
+	padding-bottom: @footerHeight;
+	min-height: 100%;
+	background: @body-bg;
+	@media (max-width: @screen-xs-max) {
+		padding-bottom: 0;
+	}
+}
+
+.site-footer.site-footer--sticky {
+	position: absolute;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: @footerHeight;
+	@media (max-width: @screen-xs-max) {
+		position: relative;
+		bottom: auto;
+		height: auto;
+	}
 }
 
 
 
 
-// LINKS
+// Links
 // ------------------------------
 .links-list {
 	h3 {
@@ -62,8 +185,8 @@
 	.byline { margin: 0 0 0 0; }
 	
 	.link {
-		font-size: @font-size-base + 2;
 		margin: 0;
+		font-size: @font-size-base + 2;
 	}
 
 	.tags-list {
@@ -88,16 +211,16 @@
 		margin-bottom: 5px;
 	}
 	a {
-		padding: 2px 10px;
 		display: inline-block;
+		padding: 2px 10px;
 		border-radius: @border-radius-base;
-		font-size: @font-size-base;
 		background-color: @gray-light;
 		color: white;
+		font-size: @font-size-base;
 		
 		&:hover {
-			text-decoration: none;
 			background-color: @link-color;
+			text-decoration: none;
 		}
 		&.active {
 			background-color: @link-color;
@@ -112,124 +235,67 @@
 
 
 
-// FORMS
+// Page
 // ------------------------------
 
-// twbs right aligned labels looks weird
-.form-horizontal .control-label {
-	text-align: left;
+// Secondary page intro
+.page-intro {
+	padding-bottom: @page-padding;
+	text-align: center;
+	h1 {
+		margin-bottom: 0.25em;
+	}
+	.buttons > .btn {
+		margin-right: 10px;
+	}
+	.lead {
+		max-width: @screen-sm-min - @grid-gutter-width;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
-// labels for checkboxes should look like content
-.checkbox { font-weight: inherit; }
 
-// allow gap between collapsed fields on small devices
+// Page content
+.page-content {
+	.floor;
+	.floor-1;
+}
+
+// Page section
+.section {
+	padding-bottom: @page-padding * 1.5;
+	padding-top: @page-padding * 1.5;
+}
+.section--featured {
+	padding-bottom: @page-padding * 1;
+	padding-top: @page-padding * 2.5;
+}
+
+// Add space at the top on tiny screens
+@media (max-width: @screen-sm-max) {
+	.row {
+		[class^="col-md"] + [class^="col-md"] {
+			margin-top: @page-padding;
+		}
+	}
+}
+
 @media (max-width: @screen-xs-max) {
-	.form-group .row > [class^='col-'] {
-		margin-bottom: 10px;
-	}
-}
-
-// assume textarea's have adequate width
-// allow vertical resizing
-textarea {
-	.resizable(vertical);
-}
-
-
-
-// PAGE INTROS
-// ------------------------------
-.back-bar,
-.page-intro {
-	background-color: white;
-	border-bottom: 1px solid darken(desaturate(@body-bg, 30%), 8%);
-}
-.page-intro {
-	padding-bottom: 35px;
-	margin-bottom: 40px;
-	
-	p {
-		
-		font-size: floor(@font-size-base * 1.15);
-		font-weight: 200;
-		line-height: 1.4;
-		margin-bottom: 8px;
-
-		@media (min-width: @screen-sm-min) {
-			font-size: (@font-size-base * 1.5);
-		}
-		
-	}
-	
-	.buttons {
-		min-height: 30px;
-		margin-top: 14px;
-		
-		.btn {
-			margin-right: 10px;
-		}
-	
-		.twitter-follow-button {
-			position: absolute;
-			margin-top: 2px;
+	.row {
+		[class^="col-sm"] + [class^="col-sm"] {
+			margin-top: @page-padding;
 		}
 	}
 }
 
 
 
-
-// MEETUPS
-// ------------------------------
-.meetup {
-	margin-top: 60px;
-}
-.meetup--present {
-	margin-top: 0;
-}
-.meetup-talks {
-	border-top: 1px dashed @hr-border;
-	font-size: @font-size-base;
-	padding-left: 40px;
-	padding-top: 20px;
-	position: relative;
-	
-	.meetup-talks__icon {
-		color: mix(@text-color, @body-bg, 30%);
-		display: block;
-		position: absolute;
-		left: 0;
-		top: 20px;
-	}
-	.meetup-talks__heading {
-		.text-muted();
-		margin-top: 0;
-	}
-	.talk {
-		margin-bottom: 15px;
-	}
-	.talk__name {
-		color: @headings-color;
-		font-size: @font-size-large;
-	}
-	.talk__speaker {
-		// .text-muted();
-		margin-bottom: 5px;
-	}
-	.talk__resource {
-		.text-muted();
-	}
-}
-	
-
-
-
-// MISC
+// Misc
 // ------------------------------
 .back-bar {
-	padding-bottom: 10px;
 	padding-top: 10px;
+	padding-bottom: 10px;
 	
 	p {
 		margin-bottom: 8px;
@@ -241,14 +307,13 @@ textarea {
 
 
 
-
-// organisers
-.about-organisers {
-	.organiser {
+// Organisers
+.about-organizers {
+	.organizer {
 		.img-wrapper {
 			.square( 40px );
-			overflow: hidden;
 			float: left;
+			overflow: hidden;
 			margin-right: 9px;
 			
 			img {
@@ -256,46 +321,18 @@ textarea {
 			}
 		}
 	}
-	.organiser__name {
+	.organizer__name {
 		margin: 0;
 	} 
-	.organiser__twitter {
-		font-size: @font-size-base;
+	.organizer__twitter {
 		margin-bottom: 9px;
+		font-size: @font-size-base;
 	} 
 }
 
 
 
-
-
-// share buttons
-.share-buttons {
-	margin: 20px 0;
-	min-height: 20px;
-	
-	@media (min-width: @screen-sm-min) {
-		&.right {
-			float: right;
-		
-			.share-button {
-				margin-left: 10px;
-				margin-right: 0;
-			}
-		}
-	}
-}	
-
-.share-button {
-	display: inline-block;
-	margin-right: 10px;
-	vertical-align: middle;
-	width: 76px;
-}
-
-
-
-// organisations
+// Organizations
 .org__heading {
 	margin-top: 0;
 	
@@ -304,13 +341,12 @@ textarea {
 	}
 }
 .org__location {
-	opacity: 0.8;
+	.text-muted();
 }
 .org__location-icon {
 	float: left;
-	font-size: 42px;
 	margin-right: 10px;
-	// margin-top: 2px;
+	font-size: 42px;
 }
 .org__location-address {
 	display: table;
@@ -319,8 +355,60 @@ textarea {
 	display: block;
 	margin-bottom: 20px;
 }
+
 @media (min-width: @screen-sm-min) {
 	.org__logo img {
 		.img-responsive();
 	}
+}
+
+
+
+// Animation
+// ------------------------------
+@-moz-keyframes pulse {
+  0% { -moz-transform: scale(1); }
+  50% { -moz-transform: scale(1.4); }
+  100% { -moz-transform: scale(1); }
+}
+@-webkit-keyframes pulse {
+  0% { -webkit-transform: scale(1); }
+  50% { -webkit-transform: scale(1.4); }
+  100% { -webkit-transform: scale(1); }
+}
+@-o-keyframes pulse {
+  0% { -o-transform: scale(1); }
+  50% { -o-transform: scale(1.4); }
+  100% { -o-transform: scale(1); }
+}
+@-ms-keyframes pulse {
+  0% { -ms-transform: scale(1); }
+  50% { -ms-transform: scale(1.4); }
+  100% { -ms-transform: scale(1); }
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(0deg); }
+  100% { -moz-transform: rotate(359deg); }
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(359deg); }
+}
+@-o-keyframes spin {
+  0% { -o-transform: rotate(0deg); }
+  100% { -o-transform: rotate(359deg); }
+}
+@-ms-keyframes spin {
+  0% { -ms-transform: rotate(0deg); }
+  100% { -ms-transform: rotate(359deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
 }

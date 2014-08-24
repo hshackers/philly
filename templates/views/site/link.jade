@@ -1,15 +1,18 @@
 extends ../../layouts/default
 
 block intro
+	.back-bar
+		.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+			.xs-right: a(href='/links').text-muted &larr; Back to Links
 
 
 block content
-	div
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
 		article.full-post
 			if !link
 				h2 Invalid Link.
 			else
-				header: .container
+				header
 					h1.mb-0= link.label
 					h4.blog-post__author Shared
 						if link.publishedDate
@@ -22,62 +25,40 @@ block content
 						span.share-button
 							.fb-like(data-href="http://hshackers.org/blog/link/" + link.slug, data-colorscheme="light", data-layout="button_count", data-action="like", data-show-faces="false", data-send="false")
 						span.share-button
-							a(href="https://twitter.com/share", data-via="HS Hackers", data-hashtags="HS Hackers", data-count="button", data-dnt="true").twitter-share-button Tweet
+							a(href="https://twitter.com/share", data-via="HS Hackers", data-hashtags="hshackers", data-count="button", data-dnt="true").twitter-share-button Tweet
 						span.share-button
 							.g-plusone(data-size="medium")
+				.link
+					h3: a(href=link.href, target='_blank'): em!=link.href
+				.post
+					!= link.label
+				hr
 
-				article.post: .container
-					h3: p.link: a(href=link.href, target='_blank'): em!=link.href
-					p.post
-						!= link.label
-				.back-bar
-					.container: .row: .col-85.col-sm-offset-1.col-md-8.col-md-offset-2
-						.xs-right: a(href='/links').text-muted &larr; Back to Links
-
-				section.comments: .container
-					a.dsq-brlink(href='http://disqus.com') Loading comments...
-						noscript Please enable javascript!
-					if disqus_shortname
-						script.
-							var disqus_shortname = '#{disqus_shortname}';
-							(function() {
-									var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-									dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-									(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-							})();
-					else
-						script.
-							var disqus_shortname = 'hshackers';
-							(function() {
-									var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-									dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-									(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-							})();
-
-				//- section.comments: .container
+				.comments
 					h4=link.comments.length == 0 ? 'Be the first to reply' : plural(link.comments.length, '* comment', '* comments')
 					.comment.mt-1
 						for comment in link.comments
 							if comment.author
 								.media
-									.left
+									.pull-left
 										img(src=comment.author.photo.exists ? comment.author._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=comment.author.name.full, width=40, height=40).media-object.img-circle
 									.media-body
 										h5.mt-0
 											=comment.author.name.full
 											span.text-muted  &middot; #{moment(comment.publishedOn).fromNow()}
 										!=comment.content.html
-					if user
-						//- Reply form
-						form(method='post').comment-form.mt-5
-							input(type='hidden', name='action', value='create-comment')
-							.media
-								.left
-									img(src=user.photo.exists ? user._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=user.name.full, width=40, height=40).img-responsive.img-circle
-								.media-body
-									textarea(placeholder='Share your thoughts...', name='content').form-control
-									.form-inline.mv-5
-										button(type='submit').btn.btn-success Submit
+				if user
+					//- Reply form
+					form(method='post').comment-form.mt-5
+						input(type='hidden', name='action', value='create-comment')
+						.media
+							.pull-left
+								img(src=user.photo.exists ? user._.photo.thumbnail(60,60) : '/images/placeholders/user-60x60.jpg', alt=user.name.full, width=40, height=40).img-responsive.img-circle
+							.media-body
+								textarea(placeholder='Add your comment...', name='content').form-control
+								.form-inline.mv-5
+									button(type='submit').btn.btn-success Submit
+
 
 
 block js

@@ -1,4 +1,5 @@
 var keystone = require('keystone'),
+	_ = require('underscore'),
 	moment = require('moment');
 
 var Meetup = keystone.list('Meetup'),
@@ -10,12 +11,12 @@ exports = module.exports = function(req, res) {
 		locals = res.locals;
 	
 	locals.section = 'me';
+	locals.page.title = 'Settings - HS Hackers';
 	
-	view.query('meetups.next',
+	view.query('nextMeetup',
 		Meetup.model.findOne()
-			.where('date').gte(moment().startOf('day').toDate())
-			.where('state', 'published')
-			.sort('date')
+			.where('state', 'active')
+			.sort('startDate')
 	, 'talks[who]');
 	
 	view.query('rsvps.history',
@@ -26,28 +27,13 @@ exports = module.exports = function(req, res) {
 			.sort('-createdAt')
 	);
 	
-	view.on('post', { action: 'profile.top' }, function(next) {
+	view.on('post', { action: 'profile.details' }, function(next) {
 	
 		req.user.getUpdateHandler(req).process(req.body, {
-			fields: 'name,email,twitter,website,github',
-			flashErrors: true
-		}, function(err) {
-		
-			if (err) {
-				return next();
-			}
-			
-			req.flash('success', 'Your changes have been saved.');
-			return next();
-		
-		});
-	
-	});
-	
-	view.on('post', { action: 'profile.bottom' }, function(next) {
-	
-		req.user.getUpdateHandler(req).process(req.body, {
-			fields: 'isPublic,bio,photo,mentoring.available,mentoring.free,mentoring.paid,mentoring.swap,mentoring.have,mentoring.want',
+			fields: 'name, email, notifications.meetups, notifications.posts,' + 
+				'hackerbracket, school, website, isPublic, bio, photo,' +
+				'mentoring.available, mentoring.free, mentoring.paid, mentoring.swap, mentoring.have, mentoring.want,' +
+				'type, meat, beans, rice, salsa, cheese, corn, lettuce, sourcream, guacamole ,chips, notes',
 			flashErrors: true
 		}, function(err) {
 		
@@ -79,7 +65,34 @@ exports = module.exports = function(req, res) {
 		});
 
 	});
-
+	
+	view.on('init', function(next) {
+	
+		if (!_.has(req.query, 'disconnect')) return next();
+		
+		var serviceName = '';
+		
+		switch(req.query.disconnect)
+		{
+			case 'github': req.user.services.github.isConfigured = null; serviceName = 'GitHub'; break;
+			case 'facebook': req.user.services.facebook.isConfigured = null; serviceName = 'Facebook'; break;
+			case 'google': req.user.services.google.isConfigured= null; serviceName = 'Google'; break;
+			case 'twitter': req.user.services.twitter.isConfigured = null; serviceName = 'Twitter'; break;
+		}
+		
+		req.user.save(function(err) {
+		
+			if (err) {
+				req.flash('success', 'The service could not be disconnected, please try again.');
+				return next();
+			}
+			
+			req.flash('success', serviceName + ' has been successfully disconnected.');
+			return res.redirect('/me');
+		
+		});
+	
+	});
 	
 	view.on('post', { action: 'profile.password' }, function(next) {
 	
@@ -102,19 +115,6 @@ exports = module.exports = function(req, res) {
 		
 		});
 	
-	});
-	
-	view.on('render', function(next) {
-		
-		if (locals.meetups && locals.meetups.next) {
-			RSVP.model.findOne().where('meetup', locals.meetups.next.id).where('who', req.user.id).exec(function(err, rsvp) {
-				locals.meetups.nextRSVP = rsvp;
-				next(err);
-			});
-		} else {
-			next();
-		}
-		
 	});
 	
 	view.render('site/me');

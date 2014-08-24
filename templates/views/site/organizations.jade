@@ -5,7 +5,7 @@ include ../../mixins/organization
 block intro
 	.page-intro: .container
 		h1 Organizations
-		p The organizations and people who are part of HS Hackers. Should you be here? Join us!
+		p.lead These are the organizations that make HS Hackers possible. Should you be here? Join us!
 		.buttons
 			if !user
 				a(href='/join').btn.btn-primary Join HS Hackers
@@ -13,12 +13,12 @@ block intro
 			a(href='/members/mentors').btn.btn-default View Mentors
 
 block content
-	.container
+	.page-content: .container
 		.organizations
 			if organizations.length
 				each org, i in organizations
 					if i
 						hr
-					+organizations(org)
+					+organization(org)
 			else
 				h3.text-muted There are no organizations yet.

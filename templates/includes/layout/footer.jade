@@ -1,0 +1,36 @@
+//- SITE FOOTER
+footer.site-footer.site-footer--sticky: .container
+	.row
+		.col-sm-4
+			h5.footer-heading About
+			p Every 2nd Saturday of the month you'll find us talking about what we're doing and what's happening around us in the world of technology and innovation. 
+			ul.list-inline
+				li: a(href='/about') More about HS Hackers
+				li: a(href='http://facebook.com/group/PennAppsHS/', target='_blank') Facebook Group
+				li: a(href='mailto:meetup@victorlourng.com') Contact us
+
+		.col-sm-8
+			.row
+				.col-xs-4
+					h5.footer-heading Members 
+					ul
+						li: a(href='/members') Members
+						li: a(href='/members/mentors') Mentors
+						li: a(href='/organizations') Organizations
+						if !user
+							li: a(href='/join').js-auth-trigger Become a Member
+				.col-xs-4
+					h5.footer-heading Resources
+					ul
+						li: a(href='/mentoring') Peer Mentoring
+						li: a(href='/links') Links &amp; Press
+						li: a(href='/blog') Blog
+				.col-xs-4
+					h5.footer-heading Sponsors
+					ul: each sponsor in sponsors
+						li: a(href='/organizations#' + sponsor.id)= sponsor.name
+	.row.footer-copyright
+		p Copyright &copy; 2014 <a href='http://facebook.com/groups/PennAppsHS', target='_blank'>HS Hackers</a>. Powered by <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a> and the <a href='http://www.sydjs.com/showbag'>SydJS Showbag</a>. <a href='http://hshackers-legacy.herokuapp.com/', target='_blank'>Old site</a>.
+		p If you run a meetup, please feel free to clone our site and make your own! You can <a href="https://github.com/hshackers/philly", target='_blank'>find it on GitHub</a>.
+		p
+			img(src='/images/placeholders/canadian-internet.svg', width='64', height='50', alt='Thanks Ashley!', title='Oh, Canada! -Ashley')

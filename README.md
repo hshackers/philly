@@ -3,7 +3,7 @@ hshackers.org
 
 ## The HS Hackers Website.
 
-Initially built in two and a half days by the team at [Thinkmill](http://www.thinkmill.com.au) as a demo of what [KeystoneJS](http://keystonejs.com) can do, it's now a website for a meetup group in America.
+Initially built in two and a half days by our Aussie friends at [Thinkmill](http://www.thinkmill.com.au) as a demo of what [KeystoneJS](http://keystonejs.com) can do, it's now a website for a meetup group in the Keystone state. :us:
 
 ## Get Involved!
 
@@ -19,8 +19,7 @@ If you are part of another meetup group and want to use our site as a basis for 
 
 If you're contributing code, please do your best to follow the conventions established in the codebase already. This makes pull requests much easier to review and merge.
 
-We have generally followed the guidelines set out in [AirBnB's Javascript Style Guide](https://github.com/airbnb/javascript), with the exception of using real tabs for indentation.
-
+We have generally followed the guidelines set out in [Airbnb's Javascript Style Guide](https://github.com/airbnb/javascript), with the exception of using real tabs for indentation.
 
 ## Getting Started
 

@@ -1,7 +1,10 @@
 include ../mixins/flash-messages
+include ../mixins/auth/auth-forms
 
 doctype html
 html
+
+	//- HTML HEAD
 	head
 		if env == 'production' && chartbeat_property && chartbeat_domain
 			script.
@@ -9,134 +12,75 @@ html
 		
 		meta(charset="utf-8")
 		meta(name="viewport", content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width")
+
+		//- Appstore smart banner
+		meta(name="apple-itunes-app", content="app-id=897396382")
 		
-		title= title || 'HS Hackers'
+		title= page.title
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 		link(href="/styles/site.min.css", rel="stylesheet")
-		link(href="/icons/styles.css", rel="stylesheet")
-		link(href="https://fonts.googleapis.com/css?family=Exo+2:400,700|Montserrat:400,700|Dosis:300,700", rel="stylesheet")
-		//- link(href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel="stylesheet")
-
-		script(src='/js/lib/jquery/jquery-1.10.2.min.js')
-		script(src='/js/lib/mapbox/mapbox.js')
+		link(href="/fonts/icons/style.css", rel="stylesheet")
+		link(href="/fonts/franklin-ghotic/stylesheet.css", rel="stylesheet")
 
 		if user && user.canAccessKeystone
 			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
-		
+
 		block css
 		block head
-	body#top
 
-		#base-wrapper
+	//- HTML BODY
+	body(class=section ? 'sitesection-' + section : null)
+		.site-wrapper.has-sticky-footer
 			
-			//- EASTER EGG
-			#easter-egg(style='display: none;')
-				#old-logo
+			//- APP ALERT
+			if section == 'home'
+				include ../includes/layout/app-alert
+
+			//- SITE HEADER
+			include ../includes/layout/header
 			
-			//- HEADER
+			//- SITE BODY
+			block body
+				main.site-body(role='main')
 
-			nav(role='banner'): .container
-				a.nav-item.logo(href="/")
-					span.inner
-						i.icon-tools
-						| HS Hackers
-						br
-						span.cap Philadelphia
-				div.mobile-menu
-					.right
-						if user
-							a.nav-item(href='/me')
-								span.inner
-									i.icon-happy
-									| Profile
-									br
-									span.cap= user.name.first
-							a.nav-item(href='/signout')
-								span.inner
-									i.icon-boom
-									| Sign Out
-									br
-									span.cap Seeya!
-						else
-							a.login-button(href='/signin')
-								| Sign In
-							a.login-button(href='/authentication/github')
-								i.icon-github
-					a.nav-item(href="/meetups")
-						span.inner
-							i.icon-mappy
-							| Meetups
-							br
-							span.cap 2nd Saturday
-					a.nav-item(href="/members")
-						span.inner
-							i.icon-person
-							| Members
-							br
-							span.cap Connect
-					a.nav-item(href="/links")
-						span.inner
-							i.icon-monocle
-							| Links
-							br
-							span.cap Share
-				//- each link in navLinks
-					if link.layout == 'left'
-						li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
-				//- each link in navLinks
-					if link.layout == 'right'
-						li(class=(section == link.key ? 'nav-item-' + link.key + ' active' : 'nav-item-' + link.key)): a(href=link.href)= link.label
+					block intro
 
-			//- BODY
-			#base-body
-				
-				block intro
-				
-				+flash-messages(messages)
-				
-				block content
-		
-		//- FOOTER
-		#base-footer: .container
-			a.right(href='#top') Back to Top
-			p Copyright &copy; 2013 <a href='http://facebook.com/groups/PennAppsHS/'><i class='icon-facebook'></i> HS Hackers</a>. Designed by <a href='http://victorlourng.com', target='_blank'>Victor</a>. Powered by <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a> and hosted on <a href='http://heroku.com', target='_blank'>Heroku</a>.
-			p If you run a meetup, please feel free to clone our site and make your own! You can <a href="https://github.com/hshackers/philly", target='_blank'>find it on GitHub</a>. <a href="https://github.com/hshackers/philly/issues">Report a Bug</a>!
-	
-	//- scripts
+					block flash-messages
+						+flash-messages(messages)
+
+					block content
+						
+			//- SITE FOOTER
+			block footer
+				include ../includes/layout/footer
+
+
+		//- MODALS
+		block modal
+		if !user
+			#modal-auth(tabindex="-1", role="dialog", aria-labelledby="signin", aria-hidden="true").modal.fade
+				.modal-dialog
+					.modal-content
+						+auth-forms({ modal: true, initial: 'signin' })
+
+	//- JAVASCRIPT
+	script(src='/js/lib/jquery/jquery-1.10.2.min.js')
+	script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js')
 	script(src='/js/lib/bootstrap/collapse.js')
 	script(src='/js/lib/bootstrap/dropdown.js')
+	script(src='/js/lib/bootstrap/modal.js')
+
+	//- Headroom
+	//-script(src="//cdn.jsdelivr.net/headroomjs/0.5.0/headroom.min.js")
+	//-script(src="//cdn.jsdelivr.net/headroomjs/0.5.0/jQuery.headroom.min.js")
+	//-script(src='/js/common/header.js')
 
 	if user && user.canAccessKeystone
 		script(src='/keystone/js/content/editor.js')
-
-	//- Mapbox
-	script(src='/js/site.js')
 	
+	script(src='/js/ui.js')
+
+	
+	//- ANALYTICS
+	include ../includes/layout/analytics
 	block js
-
-	if env == 'production' && ga_property && ga_domain
-		script.
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-			
-			ga('create', '#{ga_property}', '#{ga_domain}');
-			ga('send', 'pageview');
-	
-	if env == 'production' && chartbeat_property && chartbeat_domain
-		script.
-			var _sf_async_config = { uid: #{chartbeat_property}, domain: '#{chartbeat_domain}', useCanonical: true };
-			(function() {
-				function loadChartbeat() {
-					window._sf_endpt = (new Date()).getTime();
-					var e = document.createElement('script');
-					e.setAttribute('language', 'javascript');
-					e.setAttribute('type', 'text/javascript');
-					e.setAttribute('src','//static.chartbeat.com/js/chartbeat.js');
-					document.body.appendChild(e);
-				};
-				var oldonload = window.onload;
-				window.onload = (typeof window.onload != 'function') ?
-				loadChartbeat : function() { oldonload(); loadChartbeat(); };
-			})();
