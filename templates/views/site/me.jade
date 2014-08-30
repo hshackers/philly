@@ -148,11 +148,13 @@ block content
 				
 				hr.mv-2#mentoring
 				h3 Mentoring
+				p Interested in being a mentor? Fill in your profile below and ping Victor Lourng or contact meetup@victorlourng.com to have your profile added to the directory.
 
 				.form-group
 					label.col-sm-2.control-label Mentoring
 					.col-sm-10
-						.checkbox: label
+						label 
+						//- .checkbox: label
 							input(type='checkbox', name='mentoring.available', value='true', checked=user.mentoring.available)
 							|  Available as a mentor
 				.mentoring-fields
