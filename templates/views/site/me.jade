@@ -9,6 +9,7 @@ block content
 		.page-intro
 			p.lead Hi #{user.name.first}, these are your settings and 
 				a(href=user.url) profile details
+		div.alert.alert-success <b>Your account is now verified!</b> You can now RSVP for meetups and add yourself to the mentor directory.
 			//- if nextMeetup
 				.alert.alert-info 
 					span.entypo.entypo-calendar
@@ -154,29 +155,29 @@ block content
 					label.col-sm-2.control-label Mentoring
 					.col-sm-10
 						label 
-						//- .checkbox: label
+						.checkbox: label
 							input(type='checkbox', name='mentoring.available', value='true', checked=user.mentoring.available)
 							|  Available as a mentor
-				//- .mentoring-fields
-				.form-group
-					.col-sm-10.col-sm-offset-2
-						.checkbox: label
-							input(type='checkbox', name='mentoring.free', value='true', checked=user.mentoring.free)
-							|  For Free
-						.checkbox: label
-							input(type='checkbox', name='mentoring.paid', value='true', checked=user.mentoring.paid)
-							|  For Payment
-						.checkbox: label
-							input(type='checkbox', name='mentoring.swap', value='true', checked=user.mentoring.swap)
-							|  For Swap
-				.form-group
-					label.col-sm-2.control-label I have...
-					.col-sm-10
-						input(type='text', name='mentoring.have', placeholder='eg; Ruby, Python', value=user.mentoring.have).form-control
-				.form-group
-					label.col-sm-2.control-label I want...
-					.col-sm-10
-						input(type='text', name='mentoring.want', placeholder='eg; HTML, CSS', value= user.mentoring.want).form-control
+				.mentoring-fields
+					.form-group
+						.col-sm-10.col-sm-offset-2
+							.checkbox: label
+								input(type='checkbox', name='mentoring.free', value='true', checked=user.mentoring.free)
+								|  For Free
+							.checkbox: label
+								input(type='checkbox', name='mentoring.paid', value='true', checked=user.mentoring.paid)
+								|  For Payment
+							.checkbox: label
+								input(type='checkbox', name='mentoring.swap', value='true', checked=user.mentoring.swap)
+								|  For Swap
+					.form-group
+						label.col-sm-2.control-label I have...
+						.col-sm-10
+							input(type='text', name='mentoring.have', placeholder='eg; Ruby, Python', value=user.mentoring.have).form-control
+					.form-group
+						label.col-sm-2.control-label I want...
+						.col-sm-10
+							input(type='text', name='mentoring.want', placeholder='eg; HTML, CSS', value= user.mentoring.want).form-control
 
 				
 				//- Chipotle
