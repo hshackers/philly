@@ -30,7 +30,7 @@ block intro
 						.hero-button
 							if user
 								if meetup.rsvpsAvailable
-									h4.hero-button-title Are you coming? 
+									h4.hero-button-title #RUComing? 
 										span.text-thin (#{plural(meetup.remainingRSVPs, '* spot left', '* spots left')})
 									include ../../includes/attendance-toggle
 								else
