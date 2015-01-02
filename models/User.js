@@ -34,7 +34,6 @@ User.add({
 	photo: { type: Types.CloudinaryImage },
 	github: { type: String, width: 'short' },
 	twitter: { type: String, width: 'short' },
-	hackerbracket: { type: String, width: 'short' },
 	school: { type: String, width: 'short' },
 	website: { type: Types.Url },
 	bio: { type: Types.Markdown },
