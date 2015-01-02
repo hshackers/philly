@@ -26,7 +26,7 @@ mixin member(member)
 				h5.member__title(class=(member.bio.html ? null : 'member__title-only')): a(href=member.url)= member.name.full
 				if member.bio.html
 					.member__bio!=utils.cropString( utils.htmlToText(member.bio.html), 100, '...', true )
-				if twitterUsername || member.github
+				if twitterUsername || member.github || member.website
 					.member__accounts.hidden-xs
 						if twitterUsername
 							a(href='https://twitter.com/' + twitterUsername, target='_blank', data-toggle='tooltip', data-title='@' + twitterUsername, data-placement='top', data-container='#members').member__account.member__account--twitter.is-tooltip
@@ -34,6 +34,9 @@ mixin member(member)
 						if githubUsername
 							a(href='https://github.com/' + githubUsername, target='_blank', data-toggle='tooltip', data-title=githubUsername, data-placement='top', data-container='#members').member__account.member__account--github.is-tooltip
 								span.entypo-social.entypo-github
+						if website
+							a(href=website, target='_blank', data-toggle='tooltip', data-title=website, data-placement='top', data-container='#members').member__account.member__account--website.is-tooltip
+								span.icon.icon-planet
 block content
 	.container
 		+flash-messages(messages)
