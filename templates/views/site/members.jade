@@ -17,6 +17,7 @@ block intro
 mixin member(member)
 	- var twitterUsername = member.twitterUsername || (member.twitter ? member.twitter.replace('@', ''): '');
 	- var githubUsername = member.githubUsername || (member.github ? member.github.replace('@', '') : '');
+	- var website = member.website;
 
 	li.member-item
 		.member.member--card
