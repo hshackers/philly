@@ -33,7 +33,7 @@ block content
 											span.entypo-social.entypo-github
 											=githubUsername
 							if member.bio.html
-								!= member.bio.html
+								.member__bio!=utils.cropString( utils.htmlToText(member.bio.html), 5000, '...', true )
 				if member.talks && member.talks.length
 					.member-section.member__additional-info
 						h5.text-caps Talks
